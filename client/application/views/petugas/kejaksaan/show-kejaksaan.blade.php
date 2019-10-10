@@ -30,26 +30,34 @@ Admin Kejaksaan
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>NIK</th>
                   <th>Nama</th>
-                  <th>Email</th>
                   <th>Nomer Hp</th>
                   <th>Jenis Kelamin</th>
                   <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <td>1</td>
-                    <td>Rafli Firdausy Irawan</td>
-                    <td>rafly.boken@gmail.com</td>
-                    <td>085726096515</td>
-                    <td>Laki - Laki</td>
-                    <td>sabar sluur</td>
+                    @foreach ($admin as $data)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $data->nip }}</td>
+                        <td>{{ $data->nama }}</td>
+                        <td>{{ $data->no_hp }}</td>
+                        <td>{{ $data->jenis_kelamin }}</td>
+                        <td>
+                            <a href="#" type="button" class="btn btn-primary btn-sm">LIHAT</a>
+                            <a href="#" type="button" class="btn btn-warning btn-sm">UBAH</a>
+                            <a href="#" type="button" class="btn btn-danger btn-sm">HAPUS</a>
+                        </td>
+                    </tr>
+                    @endforeach
                 </tbody>
                 <tfoot>
                 <tr>
                     <th>No</th>
+                    <th>NIK</th>
                     <th>Nama</th>
-                    <th>Email</th>
                     <th>Nomer Hp</th>
                     <th>Jenis Kelamin</th>
                     <th>Aksi</th>
