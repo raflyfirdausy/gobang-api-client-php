@@ -1,12 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
-    public function ___construct(){
-        parent::___construct();
-    }
+class Login extends MY_Controller {
 
     public function index(){
-        return view('login');
+        return $this->loadView('login');
     }
 }

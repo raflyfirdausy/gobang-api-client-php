@@ -534,7 +534,7 @@ $config['rest_ajax_only'] = false;
 | Language file to load from the language directory
 |
 */
-$config['rest_language'] = 'indonesia';
+$config['rest_language'] = 'english';
 
 /*
 |--------------------------------------------------------------------------

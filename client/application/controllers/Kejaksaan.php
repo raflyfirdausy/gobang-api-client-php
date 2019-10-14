@@ -1,12 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Kejaksaan extends CI_Controller {
-    public function ___construct(){
-        parent::___construct();
-    }
-
-    public function index(){
+class Kejaksaan extends MY_Controller
+{
+    public function index()
+    {
 
         $admin = $this->m_data->select(array(
             "admin.nip as nip",
@@ -21,7 +19,7 @@ class Kejaksaan extends CI_Controller {
         $admin = $this->m_data->getJoin('jabatan', 'admin.id_jabatan = jabatan.id_jabatan', "INNER");
         $admin = $this->m_data->getData('admin')->result();
 
-        foreach($admin as $a){
+        foreach ($admin as $a) {
             $a->jenis_kelamin = $a->jenis_kelamin == "0" ? "Wanita" : "Pria";
         }
 
@@ -44,6 +42,11 @@ class Kejaksaan extends CI_Controller {
             // "faker" => $dataFake,
             "admin" => $admin
         );
-        return view('petugas.kejaksaan.show-kejaksaan', $data);
+        return $this->loadView('petugas.kejaksaan.show-kejaksaan', $data);
+    }
+
+    public function tambah()
+    {
+        return $this->loadView('petugas.kejaksaan.tambah-kejaksaan');
     }
 }

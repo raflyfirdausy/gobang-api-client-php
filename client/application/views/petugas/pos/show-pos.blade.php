@@ -1,11 +1,11 @@
 @extends('layout.admin')
 
 @section('tab-title')
-    Admin Kejaksaan
+    Admin POS
 @endsection
 
 @section('page-title')
-Admin Kejaksaan
+Admin POS
 @endsection
 
 @section('page-header')
@@ -14,7 +14,7 @@ Admin Kejaksaan
 
 @section('page-breadcrumb')
 <li><a href="{{ base_url('dashboard') }}"><i class="fa fa-dashboard"></i> GO BANG</a></li>
-<li class="active">Petugas Kejaksaan</li>
+<li class="active">Petugas Pos</li>
 @endsection
 
 @section('page-content')
@@ -22,14 +22,15 @@ Admin Kejaksaan
         <div class="col-xs-12">
           <div class="box box-success">
             <div class="box-header">
-                <a href="{{base_url('kejaksaan/tambah')}}" type="button" class="btn btn-primary btn-flat pull-left">Tambah Admin Kejaksaan</a>
+                <a href="{{base_url('pos/tambah')}}" type="button" class="btn btn-primary btn-flat pull-left">Tambah Admin POS</a>
             </div>
+            <!-- /.box-header -->
             <div class="box-body">
               <table id="table-petugas" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>NIP</th>
+                  <th>Kode Admin</th>
                   <th>Nama</th>
                   <th>Nomer Hp</th>
                   <th>Jenis Kelamin</th>
@@ -37,25 +38,26 @@ Admin Kejaksaan
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($admin as $data)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $data->nip }}</td>
-                        <td>{{ $data->nama }}</td>
-                        <td>{{ $data->no_hp }}</td>
-                        <td>{{ $data->jenis_kelamin }}</td>
+                        <td>1</td>
+                        <td>PS-001</td>
+                        <td>Rafli Firdausy Irawan</td>
+                        <td>085726096515</td>
+                        <td>Pria</td>
                         <td>
                             <a href="#" type="button" class="btn btn-flat btn-info btn-sm">LIHAT</a>
                             <a href="#" type="button" class="btn btn-flat btn-warning btn-sm">UBAH</a>
                             <a href="#" type="button" class="btn btn-flat btn-danger btn-sm">HAPUS</a>
                         </td>
                     </tr>
-                    @endforeach
                 </tbody>
               </table>
             </div>
+            <!-- /.box-body -->
           </div>
+          <!-- /.box -->
         </div>
+        <!-- /.col -->
       </div>
 @endsection
 
