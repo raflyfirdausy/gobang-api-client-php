@@ -20,10 +20,10 @@
 
 @section('body')
 <div class="wrapper">
-    @component('component.main-header')
+    @component('component.main-header', ["user_data" => $user_data])
     @endcomponent
 
-    @component('component.main-sidebar')
+    @component('component.main-sidebar', ["user_data" => $user_data])
     @endcomponent
     
     <div class="content-wrapper">
@@ -48,7 +48,7 @@
     <div class="pull-right hidden-xs">
       <b>Rafli Firdausy - </b> Faturrochman
     </div>
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE</a>.</strong> All rights
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ base_url() }}">{{ $app_name }}</a>.</strong> All rights
     reserved.
   </footer>
   <div class="control-sidebar-bg"></div>

@@ -5,8 +5,8 @@
             <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Rafli Firdausy</p>
-            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            <p>{{ $user_data->nama }}</p>
+            <a href="#"><i class="fa fa-circle text-success"></i> {{ ucfirst($user_data->level) }}</a>
           </div>
         </div>
         <ul class="sidebar-menu" data-widget="tree">
@@ -24,11 +24,11 @@
             <ul class="treeview-menu">
               <li class=""><a href="{{ base_url('kejaksaan') }}"><i class="fa fa-circle-o"></i> Admin Kejaksaan</a></li>
               <li><a href="{{ base_url('pos') }}"><i class="fa fa-circle-o"></i> Admin POS</a></li>
-              <li><a href="{{ base_url('kurir') }}"><i class="fa fa-circle-o"></i> Petugas Kurir</a></li>
+              {{-- <li><a href="{{ base_url('kurir') }}"><i class="fa fa-circle-o"></i> Petugas Kurir</a></li> --}}
             </ul>
           </li>  
           <li class="">
-            <a href="{{ base_url('datatilang') }}"><i class="fa fa-laptop"></i> <span>[K] Data Tilang</span></a>
+            <a href="{{ base_url('data-tilang/index') }}"><i class="fa fa-laptop"></i> <span>[K] Data Tilang</span></a>
           </li>      
           <li class="">
             <a href="#">

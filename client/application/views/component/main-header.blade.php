@@ -17,11 +17,10 @@
               </a>
               <ul class="dropdown-menu">
                 <li class="user-header">
-                  <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
-  
+                  <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">  
                   <p>
-                    Rafli Firdausy Irawan
-                    <small>Terakhir Login : 23 Maret 2019 17:54:11 WIB</small>
+                    {{ $user_data->nama }}
+                  <small>Terakhir Login : {{ date("d M Y | H:i:s", strtotime($user_data->last_login)) }} WIB</small>
                   </p>
                 </li>
                 <!-- Menu Footer-->
@@ -30,7 +29,7 @@
                     <a href="{{ base_url('profile') }}" class="btn btn-default btn-flat">Profile</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">Keluar</a>
+                    <a href="{{ base_url('logout') }}" class="btn btn-default btn-flat">Keluar</a>
                   </div>
                 </li>
               </ul>
