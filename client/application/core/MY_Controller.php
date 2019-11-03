@@ -23,10 +23,11 @@ class MY_Controller extends CI_Controller
         }        
 
         $this->global_data = [
-            "app_name"          => "GO BANG",
+            "app_name"          => "Go Bang",
             "app_complete_name" => "Go Barang Bukti dan Tilang",
             "CI"                => $CI,
-            "user_data"         => $userData
+            "user_data"         => $userData,
+            "aktif"             => NULL
         ];
     }
 

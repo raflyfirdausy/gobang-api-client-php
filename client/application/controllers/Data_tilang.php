@@ -37,6 +37,7 @@ class Data_tilang extends MY_Controller
         $dataTilang = $this->m_data->getWhere("created_at <=", date('Y-m-d', strtotime($tanggal_akhir)));
         $dataTilang = $this->m_data->getData("daftar_terpidana")->result();
         
+        $data["aktif"] = "data_tilang";
         $data["dataTilang"] = $dataTilang;
         return $this->loadView('data-tilang.show', $data);
     }

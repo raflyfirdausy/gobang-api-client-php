@@ -23,7 +23,7 @@
     @component('component.main-header', ["user_data" => $user_data])
     @endcomponent
 
-    @component('component.main-sidebar', ["user_data" => $user_data])
+    @component('component.main-sidebar', ["user_data" => $user_data, "aktif" => $aktif])
     @endcomponent
     
     <div class="content-wrapper">

@@ -3,6 +3,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Kejaksaan extends MY_Controller
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $userData = $this->m_data->getWhere("nip", $this->session->userdata("login")->nip);
+        $userData = $this->m_data->getData("admin")->row();
+        if ($userData->level !== "super_admin") {
+            redirect(base_url());
+        }
+    }
+    
     public function index()
     {
 
@@ -38,10 +49,12 @@ class Kejaksaan extends MY_Controller
         //     array_push($dataFake, $datax);
         // }
 
-        $data = array(
-            // "faker" => $dataFake,
-            "admin" => $admin
-        );
+        // $data = array(
+        //     // "faker" => $dataFake,
+        //     "admin" => $admin
+        // );
+        $data["admin"]  = $admin;
+        $data["aktif"]  = "petugas";
         return $this->loadView('petugas.kejaksaan.show-kejaksaan', $data);
     }
 

@@ -1,12 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Dashboard extends MY_Controller {
-    public function ___construct(){
-        parent::___construct();        
+class Dashboard extends MY_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
     }
 
-    public function index(){
-        return $this->loadView('admin.dashboard');
+    public function index()
+    {
+        $data["aktif"] = "dashboard";
+        return $this->loadView('admin.dashboard', $data);
     }
 }
