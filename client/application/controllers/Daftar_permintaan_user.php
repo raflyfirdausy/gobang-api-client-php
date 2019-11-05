@@ -33,9 +33,9 @@ class Daftar_permintaan_user extends MY_Controller
 
     public function index(){                      
         $data["data_permintaan"]    = $this->get_permintaan_bb();
-        $data["title"]              = "Permintaan Barang Bukti";
+        $data["title"]              = "Daftar Permintaan User";
         $data["aktif"]              = "daftar_permintaan_user";
-        return $this->loadView('permintaan-bb.show', $data);
+        return $this->loadView('daftar-permintaan-user.show', $data);
     }
 
     public function download_berita_acara(){       

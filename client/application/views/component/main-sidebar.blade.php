@@ -57,12 +57,12 @@
               <i class="fa fa-bell-o"></i> <span>Riwayat Permintaan User</span>              
             </a>
           </li>    
-          <li class="">
-              <a href="#"><i class="fa fa-laptop"></i> <span>Permintaan Barang Bukti</span></a>
+          <li class="{{ $aktif == 'permintaan_barang_bukti' ? 'active' : '' }}">
+              <a href="{{ base_url('permintaan-barang-bukti') }}"><i class="fa fa-laptop"></i> <span>Permintaan Barang Bukti</span></a>
           </li>  
           <li class="{{ $aktif == 'daftar_permintaan_user' ? 'active' : '' }}">
             <a href="{{ base_url('daftar-permintaan-user') }}">
-              <i class="fa fa-check-square-o"></i> <span>Daftar Permintaan User</span>
+              <i class="fa fa-check-square-o"></i> <span>[P] Daftar Permintaan User</span>
               @if ($g_permintaan_bb > 0)
                 <span class="pull-right-container">
                   <small class="label pull-right bg-blue">{{{ $g_permintaan_bb }}}</small>
