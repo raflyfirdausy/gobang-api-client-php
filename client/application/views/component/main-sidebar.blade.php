@@ -52,14 +52,17 @@
           <li class="{{ $aktif == 'data_tilang' ? 'active' : '' }}">
             <a href="{{ base_url('data-tilang/') }}"><i class="fa fa-laptop"></i> <span>Data Tilang</span></a>
           </li>      
-          <li class="{{ $aktif == 'permintaan_user' ? 'active' : '' }}">
-            <a href="{{ base_url('permintaan-user') }}">
+          <li class="{{ $aktif == 'riwayat_permintaan_user' ? 'active' : '' }}">
+            <a href="{{ base_url('riwayat-permintaan-user') }}">
               <i class="fa fa-bell-o"></i> <span>Riwayat Permintaan User</span>              
             </a>
           </li>    
           <li class="">
-            <a href="{{ base_url('permintaan-barang-bukti') }}">
-              <i class="fa fa-check-square-o"></i> <span>Permintaan Brg Bukti</span>
+              <a href="#"><i class="fa fa-laptop"></i> <span>Permintaan Barang Bukti</span></a>
+          </li>  
+          <li class="{{ $aktif == 'daftar_permintaan_user' ? 'active' : '' }}">
+            <a href="{{ base_url('daftar-permintaan-user') }}">
+              <i class="fa fa-check-square-o"></i> <span>Daftar Permintaan User</span>
               @if ($g_permintaan_bb > 0)
                 <span class="pull-right-container">
                   <small class="label pull-right bg-blue">{{{ $g_permintaan_bb }}}</small>
@@ -67,14 +70,12 @@
               @endif              
             </a>
           </li>   
+         
           <li class="">
-              <a href="#"><i class="fa fa-laptop"></i> <span>Daftar Permintaan User</span></a>
+              <a href="#"><i class="fa fa-bell-o"></i> <span>[P] Riwayat Pengambilan BB</span></a>
           </li>  
           <li class="">
-              <a href="#"><i class="fa fa-bell-o"></i> <span>Riwayat Pengambilan BB</span></a>
-          </li>  
-          <li class="">
-              <a href="#"><i class="fa fa-check-square-o"></i> <span>Status Barang Bukti</span></a>
+              <a href="#"><i class="fa fa-check-square-o"></i> <span>[P] Status Barang Bukti</span></a>
           </li>  
         </ul>
       </section>

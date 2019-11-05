@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Permintaan_barang_bukti extends MY_Controller
+class Daftar_permintaan_user extends MY_Controller
 {
     public function __construct()
     {
@@ -34,7 +34,7 @@ class Permintaan_barang_bukti extends MY_Controller
     public function index(){                      
         $data["data_permintaan"]    = $this->get_permintaan_bb();
         $data["title"]              = "Permintaan Barang Bukti";
-        $data["aktif"]              = "permintaan_bb";
+        $data["aktif"]              = "daftar_permintaan_user";
         return $this->loadView('permintaan-bb.show', $data);
     }
 
@@ -67,10 +67,10 @@ class Permintaan_barang_bukti extends MY_Controller
                 
                 $this->m_data->insert_batch("detail_permintaan_bb", $dataInsertBatch);
                 $this->session->set_flashdata("sukses", "Berhasil melakukan permintaan pengambilan barang bukti tilang.");                        
-                redirect(base_url("permintaan-barang-bukti"));
+                redirect(base_url("daftar-permintaan-user"));
             } else {
                 $this->session->set_flashdata("gagal", "Tidak ada barang bukti yang bisa di lakukan permintaan");    
-                redirect(base_url("permintaan-barang-bukti"));
+                redirect(base_url("daftar-permintaan-user"));
             }                        
         }        
     }

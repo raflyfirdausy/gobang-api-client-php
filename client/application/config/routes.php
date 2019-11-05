@@ -57,4 +57,4 @@ $route['login']['get']          = 'auth/index';
 $route['login']['post']         = 'auth/proses-login';
 $route['logout']['get']         = 'auth/proses-logout';
 
-$route['permintaan-barang-bukti']['post'] = 'Permintaan-barang-bukti/download-berita-acara';
+$route['daftar-permintaan-user']['post'] = 'daftar-permintaan-user/download-berita-acara';

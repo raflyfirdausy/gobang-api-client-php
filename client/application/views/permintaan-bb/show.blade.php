@@ -100,7 +100,7 @@
       <div class="modal fade" id="modal-berita-acara">
           <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ base_url('permintaan-barang-bukti') }}" method="post">
+                <form action="{{ base_url('daftar-permintaan-user') }}" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>

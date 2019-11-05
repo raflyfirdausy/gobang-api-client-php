@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Permintaan_user extends MY_Controller
+class Riwayat_permintaan_user extends MY_Controller
 {
     public function __construct()
     {
@@ -65,7 +65,7 @@ class Permintaan_user extends MY_Controller
         // d($data_permintaan);
         
         $data["title"]              = "Riwayat Permintaan User";
-        $data["aktif"]              = "permintaan_user";
+        $data["aktif"]              = "riwayat_permintaan_user";
         $data["data_permintaan"]    = $data_permintaan;
         return $this->loadView('permintaan-user.show', $data);
     }
