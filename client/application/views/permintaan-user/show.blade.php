@@ -74,23 +74,36 @@
                   <th>No Reg Tilang</th>
                   <th>Nama Terpidana</th>
                   <th>Alamat Antar</th>                  
-                  <th>Nomer Hp</th>
-                  <th>Nomer VA</th>
+                  <th>Nomer Hp</th>                  
                   <th>Total Biaya (Rp)</th>
+                  <th>Waktu Permintaan</th>
                   <th>Status</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>123</td>
-                        <td>rafli</td>
-                        <td>klahang</td>
-                        <td>085726096515</td>
-                        <td>123123123123123</td>
-                        <td>50000</td>
-                        <td>Menunggu Pembayaran</td>
-                    </tr>
+                  @foreach ($data_permintaan as $item)
+                  <tr>
+                      <td>{{ $loop->iteration }}</td>
+                      <td>{{ $item->no_reg_tilang }}</td>
+                      <td>{{ $item->nama_terpidana }}</td>
+                      <td>{{ $item->alamat_antar }}</td>
+                      <td>{{ $item->nomer_hp }}</td>
+                      <td>{{ $item->total_biaya }}</td>
+                      <td>{{ $item->waktu_permintaan }}</td>
+                      <td>{{ $item->status_riwayat }}</td>
+                      <td>
+                          <button 
+                            data-no_reg_tilang  ="" 
+                            data-nama_terpidana ="" 
+                            data-toggle="modal" 
+                            data-target="#modal-detail" 
+                            type="button" 
+                            class="hapusData btn btn-danger col-xs-12">Detail
+                          </button>
+                        </td>
+                  </tr>                      
+                  @endforeach                    
                 </tbody>
               </table>
             </div>
@@ -98,26 +111,20 @@
         </div>
       </div>
 
-      <div class="modal fade" id="modal-hapus">
+      <div class="modal fade" id="modal-detail">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b>Peringatan Hapus Data</b></h4>
-              </div>
-              <form enctype="multipart/form-data" role="form" method="POST" action="{{ base_url('data-tilang/hapus-tilang') }}">
+                <h4 class="modal-title"><b>Detail Data Permintaan User</b></h4>
+              </div>              
                   <div class="modal-body">  
-                      <b>Peringatan!</b> 
-                      <span id="info_hapus">Kamu akan menghapus data Rafli Firdausy</span> <br>
-                      <span>Data yang di hapus tidak dapat di kembalikan. Tetap hapus ?</span>
-                      <input type="hidden" name="no_reg_tilang" id="NoRegTilang">
+                      <b>Coming Soon!</b>                       
                   </div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                      <input type="submit" name="submit" value="Hapus" class="btn btn-danger">
-                  </div>
-              </form>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>                      
+                  </div>              
             </div>
           </div>
       </div>

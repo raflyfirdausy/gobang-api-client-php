@@ -56,3 +56,5 @@ $route['translate_uri_dashes']  = TRUE;
 $route['login']['get']          = 'auth/index';
 $route['login']['post']         = 'auth/proses-login';
 $route['logout']['get']         = 'auth/proses-logout';
+
+$route['permintaan-barang-bukti']['post'] = 'Permintaan-barang-bukti/download-berita-acara';

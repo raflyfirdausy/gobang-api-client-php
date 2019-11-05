@@ -58,11 +58,13 @@
             </a>
           </li>    
           <li class="">
-            <a href="#">
-              <i class="fa fa-check-square-o"></i> <span>Permintaan Barang Bukti</span>
-              <span class="pull-right-container">
-                <small class="label pull-right bg-blue">8</small>
-              </span>
+            <a href="{{ base_url('permintaan-barang-bukti') }}">
+              <i class="fa fa-check-square-o"></i> <span>Permintaan Brg Bukti</span>
+              @if ($g_permintaan_bb > 0)
+                <span class="pull-right-container">
+                  <small class="label pull-right bg-blue">{{{ $g_permintaan_bb }}}</small>
+                </span>
+              @endif              
             </a>
           </li>   
           <li class="">
