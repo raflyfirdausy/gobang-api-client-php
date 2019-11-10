@@ -31,16 +31,11 @@ class Daftar_permintaan_user extends MY_Controller
             "total_permintaan"  => sizeof($permintaan_bb),
             "data"              => $permintaan_bb
         );
-
         return $data_permintaan;
     }
 
-    public function aw()
-    {        
-        $plain_text = '9999999999';       
-        echo RFL_ENCRYPT($plain_text);
-        echo "<br>";
-        echo RFL_DECRYPT("4d7a633d");
+    public function get_data(){
+        echo json_encode($this->get_permintaan_bb());
     }
 
     public function index()

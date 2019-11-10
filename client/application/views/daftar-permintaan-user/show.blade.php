@@ -9,7 +9,8 @@
 @endsection
 
 @section('page-header')
-
+<link rel="stylesheet" href="{{ asset('css/select.bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/dataTables.checkboxes.css') }}">
 @endsection
 
 @section('page-breadcrumb')
@@ -46,7 +47,6 @@
                       echo $CI->session->flashdata("gagal");
                     }
                 @endphp
-
             </div>
             @endif
 
@@ -66,31 +66,29 @@
                     </div>
                 </div>
             </div>
-            <!-- /.box-header -->
+            
             <div class="box-body table-responsive">
-              <table id="table-petugas" class="table table-bordered table-striped">
+              <table id="table-permintaan" class="table table-striped table-bordered table-hover">
                 <thead>
-                <tr>
-                  <th>No</th>
-                  <th>No Reg Tilang</th>
-                  <th>Nama Terpidana</th>                  
-                  <th>Alamat Tujuan Antar</th>                  
-                  <th>Nomer Hp</th>
-                </tr>
+                  <tr>                    
+                    <th></th>
+                    <th>No Reg Tilang</th>
+                    <th>Nama Terpidana</th>
+                    <th>Alamat Tujuan Antar</th>
+                    <th>Nomer Hp</th>
+                  </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data_permintaan["data"] as $item)
-                        <tr>
-                          <td>{{ $loop->iteration }}</td>
-                          <td>{{ $item->no_reg_tilang }}</td>
-                          <td>{{ $item->nama_terpidana }}</td>
-                          <td>
-                            {{ $item->detail_alamat }}, {{ $item->alamat_antar }} {{ $item->kode_pos }}
-                          </td>
-                          <td>{{ $item->nomer_hp }}</td>
-                        </tr>
-                    @endforeach  
-                </tbody>
+                  @foreach ($data_permintaan["data"] as $item)                  
+                    <tr>
+                      <td></td>
+                      <td>{{ $item->no_reg_tilang }}</td>
+                      <td>{{ $item->nama_terpidana }}</td>
+                      <td>{{ $item->alamat_antar }}</td>
+                      <td>{{ $item->nomer_hp }}</td>
+                    </tr>
+                  @endforeach                  
+                </tbody>          
               </table>
             </div>
           </div>
@@ -123,10 +121,28 @@
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 <script src=" {{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
 <script src=" {{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-<!-- date-range-picker -->
 <script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('js/dataTables.select.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.checkboxes.min.js') }}"></script>
 <script>
+  
+
+  $(document).ready(function(){
+    $('#table-permintaan').DataTable({     
+        "columnDefs": [{
+            orderable: true,            
+            targets: 0,
+            checkboxes: {
+              'selectRow': true
+            }          
+        }],
+        'select': {
+          'style': 'multi',          
+        },
+        'order': [[1, 'asc']]                 
+    });
+  });
 
   $("#btn_ambil").click(function(){
         let jumlah      = $(this).data('jumlah');        
@@ -135,10 +151,8 @@
         // $("#NoRegTilang").val(no_reg_tilang);
     });
 
-    $(function () {
-        $('#table-petugas').DataTable()
-
-        $('#daterange-btn').daterangepicker(
+    $(function () {    
+    $('#daterange-btn').daterangepicker(
       {
         ranges   : {
           // 'Semua'           : [moment().subtract(9999, 'days'), moment()],
