@@ -328,7 +328,8 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = '556b464754466b67526b6c535245465655316b6753564a425630464f49456442546c5246546b63674f6c413d';
+// base64_decode(hex2bin()); JANGAN DI COBA KALO GAMAU NYESEL :P
 
 /*
 |--------------------------------------------------------------------------

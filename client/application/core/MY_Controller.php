@@ -7,7 +7,14 @@ class MY_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $CI = &get_instance();
+        $CI = &get_instance();     
+        
+        $CI->encryption->initialize(
+            array(
+                'cipher' => 'aes-256',
+                'mode' => 'ctr'
+            )
+        );  
 
         if ($this->router->fetch_class() != "auth") {
             if (!$this->session->has_userdata('login')) {
