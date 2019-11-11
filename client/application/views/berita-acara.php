@@ -49,11 +49,11 @@
                 <thead>
                     <tr>
                         <th width="30%">Pembayaran Berhasil</th>
-                        <th>: 2 Barang Bukti</th>
+                        <th>: <?= sizeof($data_permintaan["data"]) ?> Barang Bukti</th>
                     </tr>
                     <tr>
                         <th width="30%">Pembayaran Gagal</th>
-                        <th>: 0 Barang Bukti</th>
+                        <th>: <?= sizeof($data_gagal["data"]) ?> Barang Bukti</th>
                     </tr>
                 </thead>
             </table>
@@ -85,6 +85,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php if(sizeof($data_gagal["data"]) > 0) : ?>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Berikut lampiran data yang gagal kami lakukan pembayaran :
             </p>
@@ -100,7 +101,7 @@
                 </thead>
                 <tbody>
                     <?php $no = 1;
-                    foreach ($data_permintaan["data"] as $item) : ?>
+                    foreach ($data_gagal["data"] as $item) : ?>
                         <tr>
                             <td style="padding:5px; text-align:center;"><?= $no++; ?></td>
                             <td><?= $item->no_reg_tilang ?></td>
@@ -113,6 +114,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
+            <?php endif ?>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Demikian berita acara pengambilan barang bukti tilang ini di buat,
                 dengan menyerahkan barang bukti tilang

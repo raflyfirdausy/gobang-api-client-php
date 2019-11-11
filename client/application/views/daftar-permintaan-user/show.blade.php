@@ -86,7 +86,7 @@
                       <td>{{ $item->nama_terpidana }}</td>
                       <td>{{ $item->alamat_antar }}</td>
                       <td>{{ $item->nomer_hp }}</td>
-                    </tr>
+                    </tr>                   
                   @endforeach                  
                 </tbody>          
               </table>
@@ -98,18 +98,18 @@
       <div class="modal fade" id="modal-berita-acara">
           <div class="modal-dialog">
             <div class="modal-content">
-                <form action="{{ base_url('daftar-permintaan-user') }}" method="post">
+                <form id="formSubmitSlur" action="{{ base_url('daftar-permintaan-user') }}" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><b>Informasi Permintaan Pengambilan barang Bukti</b></h4>
+                        <h4 class="modal-title"><b>Informasi Permintaan Pengambilan Barang Bukti</b></h4>
                     </div>              
                     <div class="modal-body">                          
                         <span id="info_pengambilan"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <input type="submit" name="submit" value="Download Berita Acara" class="btn btn-primary">
+                        <input type="submit" id="buttonSubmitSlur" name="submit" value="Download Berita Acara" class="btn btn-primary">
                     </div>  
                 </form>            
             </div>
@@ -119,37 +119,71 @@
 
 @section('page-footer')
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-<script src=" {{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-<script src=" {{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset('bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script src="{{ asset('js/dataTables.select.min.js') }}"></script>
 <script src="{{ asset('js/dataTables.checkboxes.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.selectlagi.min.js') }}"></script>
+
 <script>
   
 
   $(document).ready(function(){
-    $('#table-permintaan').DataTable({     
+    var table_permintaan = $('#table-permintaan').DataTable({     
         "columnDefs": [{
             orderable: true,            
             targets: 0,
             checkboxes: {
-              'selectRow': true
+              'selectRow': true,
+              'selectCallback' : function(){
+                // alert("aw");
+              }
             }          
         }],
         'select': {
-          'style': 'multi',          
+          'style': 'multi',               
         },
         'order': [[1, 'asc']]                 
     });
+
+    $("#btn_ambil").click(function(){
+        let jumlah      = $(this).data('jumlah');   
+        let form        = $("#formSubmitSlur");
+        let buttonSubmitSlur = $("#buttonSubmitSlur");
+
+        let banyak      = table_permintaan.rows('.selected').data().length;
+        
+        var ids = $.map(table_permintaan.rows('.selected').data(), function (item) {
+          return item[1]
+        });
+
+        if(banyak > 0 ){
+          $("#info_pengambilan").text("Anda akan melakukan permintaan pengambilan barang bukti tilang sebanyak " + banyak + " buah dan bukti tilang yang tidak di pilih di anggap gagal di lakukan shettlement.  Silahkan download berita acara di bawah ini sebagai syarat pengambilan barang bukti tilang di kejaksaan.");
+        } else {
+          $("#info_pengambilan").text("Silahkan pilih data tilang terlebih dahulu");
+        }
+         
+
+        $("#selected_id_slur").remove();
+        $('<input>', {
+              type: 'hidden',
+              id: 'selected_id_slur',
+              name: 'selected_id',
+              value: banyak > 0 ? ids : null
+          }).appendTo(form);    
+
+        buttonSubmitSlur.prop('disabled', banyak > 0 ? false : true); 
+        console.log(ids)           
+    });
+
+    
   });
 
-  $("#btn_ambil").click(function(){
-        let jumlah      = $(this).data('jumlah');        
-        $("#info_pengambilan").text("Kamu akan melakukan permintaan pengambilan barang bukti tilang sebanyak " + jumlah + " buah. Silahkan download berita acara di bawah ini sebagai syarat pengambilan barang bukti di kejaksaan.")
-        // $("#info_hapus").text("Kamu akan menghapus data " + nama_terpidana + " dengan No Registrasi Tilang " + no_reg_tilang);
-        // $("#NoRegTilang").val(no_reg_tilang);
-    });
+  function getTablePermintaan(){}
+
+ 
 
     $(function () {    
     $('#daterange-btn').daterangepicker(
