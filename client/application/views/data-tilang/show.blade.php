@@ -137,13 +137,13 @@ Data Tilang
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">No Reg Tilang</label>
-                          <input disabled value="Loading..." type="text" id="m_no_reg_tilang" name="m_no_reg_tilang" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_no_reg_tilang" name="m_no_reg_tilang" class="form-control">  
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Nama terpidana</label>
-                          <input disabled value="Loading..." type="text" id="m_nama_terpidana" name="m_nama_terpidana" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_nama_terpidana" name="m_nama_terpidana" class="form-control">  
                       </div>
                   </div>
                 </div>
@@ -151,13 +151,13 @@ Data Tilang
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Alamat Terpidana</label>
-                          <input disabled value="Loading..." type="text" id="m_alamat_terpidana" name="m_alamat_terpidana" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_alamat_terpidana" name="m_alamat_terpidana" class="form-control">  
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Nomor Briva</label>
-                          <input disabled value="Loading..." type="text" id="m_nomor_briva" name="m_nomor_briva" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_nomor_briva" name="m_nomor_briva" class="form-control">  
                       </div>
                   </div>
                 </div>
@@ -165,13 +165,13 @@ Data Tilang
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Tanggal Penitipan</label>
-                          <input disabled value="Loading..." type="text" id="m_tanggal_penitipan" name="m_tanggal_penitipan" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_tanggal_penitipan" name="m_tanggal_penitipan" class="form-control">  
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Jumlah Penitipan</label>
-                          <input disabled value="Loading..." type="text" id="m_jumlah_penitipan" name="m_jumlah_penitipan" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_jumlah_penitipan" name="m_jumlah_penitipan" class="form-control">  
                       </div>
                   </div>
                 </div>
@@ -179,13 +179,13 @@ Data Tilang
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Tanggal Putusan</label>
-                          <input disabled value="Loading..." type="text" id="m_tanggal_putusan" name="m_tanggal_putusan" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_tanggal_putusan" name="m_tanggal_putusan" class="form-control">  
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Denda (Rp)</label>
-                          <input disabled value="Loading..." type="text" id="m_denda" name="m_denda" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_denda" name="m_denda" class="form-control">  
                       </div>
                   </div>
                 </div>
@@ -193,13 +193,13 @@ Data Tilang
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Biaya Perkara</label>
-                          <input disabled value="Loading..." type="text" id="m_biaya_perkara" name="m_biaya_perkara" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_biaya_perkara" name="m_biaya_perkara" class="form-control">  
                       </div>
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
                           <label class="form-label">Posisi</label>
-                          <input disabled value="Loading..." type="text" id="m_posisi" name="m_posisi" class="form-control">  
+                          <input readonly value="Loading..." type="text" id="m_posisi" name="m_posisi" class="form-control">  
                       </div>
                   </div>
                 </div>
