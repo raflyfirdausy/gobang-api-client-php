@@ -60,5 +60,6 @@
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<script src="{{ asset('js/gobang.js') }}"></script>
 @yield('page-footer')
 @endsection

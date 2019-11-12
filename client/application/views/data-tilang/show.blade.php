@@ -99,7 +99,12 @@ Data Tilang
                       <td>{{ $item->created_at }}</td>
                       <td>
 
-                          <a href="#" type="button" class="btn col-md-12 btn-primary btn-sm">Detail</a>
+                        <button 
+                        data-no_reg_tilang  ="{{ $item->no_reg_tilang }}"                         
+                        data-toggle="modal" 
+                        data-target="#modal-detail" 
+                        type="button" 
+                        class="detailData btn btn-primary col-xs-12">Detail</button>
                           {{-- <a href="#" type="button" class="btn btn-flat btn-warning btn-sm">UBAH</a> --}}              
                           
                           <button 
@@ -118,6 +123,93 @@ Data Tilang
           </div>
         </div>
       </div>
+
+      <div class="modal fade" id="modal-detail">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title"><b>Detail Data Terpidana</b></h4>
+            </div>            
+              <div class="modal-body">  
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">No Reg Tilang</label>
+                          <input disabled value="Loading..." type="text" id="m_no_reg_tilang" name="m_no_reg_tilang" class="form-control">  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Nama terpidana</label>
+                          <input disabled value="Loading..." type="text" id="m_nama_terpidana" name="m_nama_terpidana" class="form-control">  
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Alamat Terpidana</label>
+                          <input disabled value="Loading..." type="text" id="m_alamat_terpidana" name="m_alamat_terpidana" class="form-control">  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Nomor Briva</label>
+                          <input disabled value="Loading..." type="text" id="m_nomor_briva" name="m_nomor_briva" class="form-control">  
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Tanggal Penitipan</label>
+                          <input disabled value="Loading..." type="text" id="m_tanggal_penitipan" name="m_tanggal_penitipan" class="form-control">  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Jumlah Penitipan</label>
+                          <input disabled value="Loading..." type="text" id="m_jumlah_penitipan" name="m_jumlah_penitipan" class="form-control">  
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Tanggal Putusan</label>
+                          <input disabled value="Loading..." type="text" id="m_tanggal_putusan" name="m_tanggal_putusan" class="form-control">  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Denda (Rp)</label>
+                          <input disabled value="Loading..." type="text" id="m_denda" name="m_denda" class="form-control">  
+                      </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Biaya Perkara</label>
+                          <input disabled value="Loading..." type="text" id="m_biaya_perkara" name="m_biaya_perkara" class="form-control">  
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                          <label class="form-label">Posisi</label>
+                          <input disabled value="Loading..." type="text" id="m_posisi" name="m_posisi" class="form-control">  
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Tutup</button>                    
+              </div>            
+          </div>
+        </div>
+    </div>
 
       <div class="modal fade" id="modal-hapus">
           <div class="modal-dialog">
@@ -184,6 +276,31 @@ Data Tilang
 <script src="{{ asset('bower_components/moment/min/moment.min.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script>
+
+  $(".detailData").click(function(){
+      let no_reg_tilang = $(this).data('no_reg_tilang');
+      $.ajax({
+          type: 'GET',
+          url: '{{ base_url("api/get_daftar_terpidana/") }}' + no_reg_tilang,
+          dataType: 'json',
+          success: function(x){
+              if(x.respon_code == 1){
+                  $("#m_no_reg_tilang").val(x.data.no_reg_tilang);
+                  $("#m_nama_terpidana").val(x.data.nama_terpidana);
+                  $("#m_alamat_terpidana").val(x.data.alamat_terpidana);
+                  $("#m_nomor_briva").val(x.data.nomor_briva);
+                  $("#m_tanggal_penitipan").val(x.data.tgl_penitipan);
+                  $("#m_jumlah_penitipan").val(x.data.jumlah_penitipan);
+                  $("#m_tanggal_putusan").val(x.data.tgl_putusan);
+                  $("#m_denda").val(x.data.denda);
+                  $("#m_biaya_perkara").val(x.data.biaya_perkara);
+                  $("#m_posisi").val("SABAR");
+              } else {
+                  alert(x.respon_mess);
+              }
+          }
+      });
+  });
 
   $(".hapusData").click(function(){
         let no_reg_tilang      = $(this).data('no_reg_tilang');

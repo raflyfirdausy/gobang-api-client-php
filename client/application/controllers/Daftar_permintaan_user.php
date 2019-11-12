@@ -133,7 +133,7 @@ class Daftar_permintaan_user extends MY_Controller
                 $mpdf->WriteHTML($this->load->view('berita-acara', $data, TRUE));
 
                 $filename = "BERITA_ACARA_" . date("d_m_Y_H_i_s") . ".pdf";
-                $mpdf->Output($filename, 'D');
+                $mpdf->Output($filename, 'D');                
             } else {
                 $this->session->set_flashdata("gagal", "Tidak ada barang bukti yang bisa di lakukan permintaan");
                 redirect(base_url("daftar-permintaan-user"));

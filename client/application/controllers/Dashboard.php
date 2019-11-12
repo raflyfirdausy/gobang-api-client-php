@@ -13,4 +13,8 @@ class Dashboard extends MY_Controller
         $data["aktif"] = "dashboard";
         return $this->loadView('admin.dashboard', $data);
     }
+
+    public function aw(){
+        echo base64_encode("333" . "#" . "pgmm" . "#" . "60834556");
+    }
 }
