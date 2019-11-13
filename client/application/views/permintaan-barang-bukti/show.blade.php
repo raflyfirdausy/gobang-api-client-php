@@ -74,21 +74,24 @@
                             <td>{{ $item->id_permintaan_bb }}</td>
                             <td>{{ $item->total_permintaan }} Barang Bukti</td>                            
                             <td>
-                                {{ $item->acc_kejaksaan == 0 ? "Menunggu Konfirmasi" : "Diterima" }}
+                                {{ $item->acc_kejaksaan == 0 ? "Menunggu Konfirmasi" : "Di Terima" }}
                             </td>
                             <td>{{ $item->created_at }}</td>
                             <td>
-                                <button 
-                                    data-toggle="modal" 
-                                    data-target="#modal-hapus" 
+                                <button                                   
+                                    data-id_permintaan_bb = "{{ $item->id_permintaan_bb }}"
+                                    data-toggle="modal"                                     
                                     type="button" 
-                                    class="hapusData btn btn-primary ">Lihat Detail
+                                    class="btnLihatDetail btn btn-primary ">Lihat Detail
                                 </button>          
                                 <button 
+                                    {{ $item->acc_kejaksaan == 1 ? "disabled" : "" }}
+                                    data-nomer_permintaan = "{{ $item->id_permintaan_bb }}"
+                                    data-total_permintaan = "{{ $item->total_permintaan }}"
                                     data-toggle="modal" 
                                     data-target="#modal-terima" 
                                     type="button" 
-                                    class="hapusData btn btn-success ">Konfirmasi
+                                    class="konfirmasiBarangBukti btn btn-success ">Konfirmasi
                                 </button>  
                             </td>                                   
                         </tr>
@@ -101,25 +104,27 @@
       </div>
 
       <div class="modal fade" id="modal-terima">
-          <div class="modal-dialog">
-            <div class="modal-content">
-                <form action="{{ base_url('daftar-permintaan-user') }}" method="post">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><b>Informasi Permintaan Pengambilan barang Bukti</b></h4>
-                    </div>              
-                    <div class="modal-body">                          
-                        <span id="info_pengambilan"></span>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-                        <input type="submit" name="submit" value="Download Berita Acara" class="btn btn-primary">
-                    </div>  
-                </form>            
-            </div>
+        <div class="modal-dialog">
+          <div class="modal-content"> 
+            <form action="{{ base_url('permintaan-barang-bukti/konfirmasi-barang-bukti') }}" method="post">             
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title"><b>Konfirmasi Penyerahan Barang Bukti</b></h4>
+              </div>              
+              <div class="modal-body">                          
+                  <span id="title_modal_terima"></span>                 
+              </div>
+              <div class="modal-footer">
+                <input type="submit" name="submit" value="Konfirmasi" class="btn btn-success">
+                <input type="hidden" name="nomor_permintaan" id="#nomorPermintaanSlur">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+              </div>         
+            </form>       
           </div>
-      </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('page-footer')
@@ -131,11 +136,17 @@
 <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script>
 
-  $("#btn_ambil").click(function(){
-        let jumlah      = $(this).data('jumlah');        
-        $("#info_pengambilan").text("Kamu akan melakukan permintaan pengambilan barang bukti tilang sebanyak " + jumlah + " buah. Silahkan download berita acara di bawah ini sebagai syarat pengambilan barang bukti di kejaksaan.")
-        // $("#info_hapus").text("Kamu akan menghapus data " + nama_terpidana + " dengan No Registrasi Tilang " + no_reg_tilang);
-        // $("#NoRegTilang").val(no_reg_tilang);
+  $(".btnLihatDetail").click(function(){
+    let id      = $(this).data('id_permintaan_bb');    
+    window.location = "{{ base_url('permintaan-barang-bukti/download-detail-permintaan-barang-bukti/') }}" + id;
+  });
+
+  $(".konfirmasiBarangBukti").click(function(){
+        let nomer_permintaan      = $(this).data('nomer_permintaan');
+        let total_permintaan      = $(this).data('total_permintaan');
+        $('input[name="nomor_permintaan"]').val(nomer_permintaan);
+        $("#title_modal_terima").text("Konfirmasi pengambilan barang bukti dengan nomor permintaan " + nomer_permintaan + 
+        " ? Dengan mengeklik tombol konfirmasi di bawah ini, maka status tanggung jawab barang bukti akan berpindah ke PT POS Indonesia");
     });
 
     $(function () {

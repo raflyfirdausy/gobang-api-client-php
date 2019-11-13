@@ -122,16 +122,15 @@ class Daftar_permintaan_user extends MY_Controller
 
                 $this->m_data->insert_batch("detail_permintaan_bb", $dataInsertBatch);
                 $this->session->set_flashdata("sukses", "Berhasil melakukan permintaan pengambilan barang bukti tilang.");
+
                 $data["data_permintaan"]    = $this->get_detail_permintaan($insert_id, 1); // 1 kode req sukses
-                $data["data_gagal"]         = $this->get_detail_permintaan($insert_id, 2); // 2 kode ga di req (gagal)
-                // d($data["data_gagal"]);
+                $data["data_gagal"]         = $this->get_detail_permintaan($insert_id, 2); // 2 kode ga di req (gagal)                
                 $data["qr_code"]            = RFL_ENCRYPT($insert_id);
                 $data["no"]                 = $insert_id;
                 $mpdf = new \Mpdf\Mpdf();
                 $mpdf->WriteHTML($this->load->view('berita-acara', $data, TRUE));
                 $mpdf->AddPage();
                 $mpdf->WriteHTML($this->load->view('berita-acara', $data, TRUE));
-
                 $filename = "BERITA_ACARA_" . date("d_m_Y_H_i_s") . ".pdf";
                 $mpdf->Output($filename, 'D');                
             } else {

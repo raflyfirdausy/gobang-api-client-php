@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="<?= asset('bower_components/bootstrap-daterangepicker/daterangepicker.css') ?>">
     <link rel="stylesheet" href="<?= asset('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') ?>">
     <link rel="stylesheet" href="<?= asset('bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') ?>">
-    <title>Berita Acara Pengambilan Barang Bukti Tilang</title>
+    <title>Detail Permintaan Barang Bukti</title>
 </head>
 
 <body style="font-family: Times New Roman">
@@ -27,22 +27,20 @@
         <div class="col-xs-12">
             <img src="<?= asset("img/gobang-logo.png") ?>" height="60px" alt="">
             <img src="<?= asset("img/kejaksaan-logo.png") ?>" style="margin-left:5px" height="60px" alt="">
-            <img src="<?= asset("img/pos-logo.png") ?>" height="60px" alt="">
-            <img src="https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H|1&chl=<?= $qr_code ?>" class="pull-right" height="60px" alt="">
+            <img src="<?= asset("img/pos-logo.png") ?>" height="60px" alt="">            
         </div>
     </div>
     <div class="row">
         <div class="text-center" style="margin-top: 20px">
-            <h4 style="font-family: Times New Roman;font-weight: bold; padding-bottom:0px;"><u>BERITA ACARA PENGAMBILAN BARANG BUKTI TILANG</u></h4>
-            <h5 style="font-family: Times New Roman;font-weight: bold; margin-top:-5px">No : <?= $no ?> / GB-01 / GOBANG / <?= numberToRomawi(date('m')) ?> / <?= date('Y') ?></h5>
+            <h4 style="font-family: Times New Roman;font-weight: bold; padding-bottom:0px;"><u>DETAIL PERMINTAAN BARANG BUKTI</u></h4>
+            <h5 style="font-family: Times New Roman;font-weight: bold; margin-top:-5px">No : <?= $no ?> / GB-02 / GOBANG / <?= numberToRomawi(date('m')) ?> / <?= date('Y') ?></h5>
         </div>
     </div>
     <br>
     <div class="row" style="text-align:justify; text-justify:inter-word">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Berdasarkan data permintaan pengiriman barang bukti tilang yang masuk pada sistem Go Barang Bukti dan Tilang (Gobang) sampai tanggal
-            <?= date('d M Y'); ?> adalah sebanyak <?= $data_permintaan["total_permintaan"] ?> buah. Kami pihak PT POS Indonesia telah menerimanya dan telah 
-            melakukan pembayaran sebagai berikut :
+            <?= date('d M Y'); ?> adalah sebanyak <?= $data_permintaan["total_permintaan"] ?> buah. Detail Data yang di telah dilakukan Shettlement Oleh pihak PT POS Indonesia, yaitu  :
         </p>
         <div class="table">
             <table style="border: none;" class="table">
@@ -116,16 +114,14 @@
             </table>
             <?php endif ?>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Demikian berita acara pengambilan barang bukti tilang ini di buat,
-                dengan menyerahkan barang bukti tilang
-                oleh pihak Kejaksaan kepada PT POS Indonesia maka berarti kedua belah pihak
-                telah menyetujui berita acara ini
-                dan tanggung jawab barang bukti telah berpindah dari Kejaksaan ke PT POS Indonesia.
+                Demikian Detail Permintaan Barang Bukti ini di buat untuk digunakan pihak Kejaksaan 
+                menyiapkan dan melakukan pengecekan berkas bukti tilang sebelum di serahkan kepada 
+                pihak PT POS Indonesia
             </p>
         </div>
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col">
             <div class="col-xs-3 pull-right">
                 Purwokerto, <?= date("d M Y") ?>
@@ -155,7 +151,7 @@
 
     <div class="row" style="position:fixed; bottom:0; right:0; left:0;">
 
-    </div>
+    </div> -->
 </body>
 
 </html>

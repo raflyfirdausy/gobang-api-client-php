@@ -8,7 +8,8 @@ class Permintaan_barang_bukti extends MY_Controller
         parent::__construct();
     }
 
-    public function ajax_get_detail_permintaan($id_permintaan_bb = NULL){
+    public function ajax_get_detail_permintaan($id_permintaan_bb = NULL)
+    {
         $dataSukses = $this->get_permintaan_bb($id_permintaan_bb, 1);
         $dataGagal  = $this->get_permintaan_bb($id_permintaan_bb, 2);
 
@@ -20,7 +21,40 @@ class Permintaan_barang_bukti extends MY_Controller
         d($result);
     }
 
-    public function get_permintaan_bb($id_permintaan_bb = NULL, $kode_req){
+    public function download_detail_permintaan_barang_bukti($id = NULL)
+    {
+        if ($id == NULL) {
+            redirect(base_url('permintaan-barang-bukti'));
+        } else {
+            $data["data_permintaan"]    = $this->get_permintaan_bb($id, 1); // 1 kode req sukses
+            $data["data_gagal"]         = $this->get_permintaan_bb($id, 2); // 2 kode ga di req (gagal)                
+            $data["qr_code"]            = RFL_ENCRYPT($id);
+            $data["no"]                 = $id;
+            $mpdf = new \Mpdf\Mpdf();
+            $mpdf->WriteHTML($this->load->view('detail-permintaan', $data, TRUE));            
+            $filename = "DETAIL_PERMINTAAN_NO_" . $id . "_" . date("d_m_Y_H_i_s") . ".pdf";
+            $mpdf->Output($filename, 'D');
+        }
+    }
+
+    public function konfirmasi_barang_bukti(){
+        $nomor_permintaan = $this->input->post('nomor_permintaan');        
+        $update = $this->m_data->update(
+            "permintaan_bb",
+            ["acc_kejaksaan" => 1],
+            ["id_permintaan_bb"  => $nomor_permintaan]
+        );
+
+        if($update > 0){
+            $this->session->set_flashdata("sukses", "Permintaan barang bukti nomor $nomor_permintaan berhasil di konfirmasi." );                    
+        } else {
+            $this->session->set_flashdata("gagal", "Gagal melakukan konfirmasi . Terjadi Kesalahan pada server");                    
+        }
+        $this->index();
+    }
+
+    public function get_permintaan_bb($id_permintaan_bb = NULL, $kode_req)
+    {
         $detail = $this->m_data->select(array(
             "bb_status.*", "permintaan_user.*", "daftar_terpidana.*"
         ));
@@ -56,10 +90,10 @@ class Permintaan_barang_bukti extends MY_Controller
         return $detailnya;
     }
 
-    public function index(){
-        
+    public function index()
+    {
+        $data_permintaan_bb     = $this->m_data->order_by("id_permintaan_bb", "DESC");
         $data_permintaan_bb     = $this->m_data->getData("permintaan_bb")->result();
-        // d($data_permintaan_bb);
 
         $data["data_permintaan_bb"] = $data_permintaan_bb;
         $data["title"]              = "Permintaan Barang Bukti";
