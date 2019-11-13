@@ -71,7 +71,7 @@
                     @foreach ($data_permintaan_bb as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->id_permintaan_bb }}</td>
+                            <td>{{ $item->id_permintaan_bb }} / GB-02 / GOBANG / {{ numberToRomawi(date('m')) }} / {{ date('Y') }}</td>
                             <td>{{ $item->total_permintaan }} Barang Bukti</td>                            
                             <td>
                                 {{ $item->acc_kejaksaan == 0 ? "Menunggu Konfirmasi" : "Di Terima" }}
