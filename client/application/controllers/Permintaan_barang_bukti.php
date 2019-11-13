@@ -25,7 +25,7 @@ class Permintaan_barang_bukti extends MY_Controller
     {
         if ($id == NULL) {
             redirect(base_url('permintaan-barang-bukti'));
-        } else {
+        } else {            
             $data["data_permintaan"]    = $this->get_permintaan_bb($id, 1); // 1 kode req sukses
             $data["data_gagal"]         = $this->get_permintaan_bb($id, 2); // 2 kode ga di req (gagal)                
             $data["qr_code"]            = RFL_ENCRYPT($id);
@@ -38,7 +38,17 @@ class Permintaan_barang_bukti extends MY_Controller
     }
 
     public function konfirmasi_barang_bukti(){
-        $nomor_permintaan = $this->input->post('nomor_permintaan');        
+        $nomor_permintaan = $this->input->post('nomor_permintaan');   
+        $dataSukses = $this->get_permintaan_bb($nomor_permintaan, 1);
+                
+        foreach($dataSukses["data"] as $item){
+            $updateStatus = $this->m_data->update(
+                "daftar_terpidana",
+                ["posisi" => "pos"], // 1 sukses | 2 gagal
+                ["no_reg_tilang"  => $item->no_reg_tilang]
+            );
+        }
+
         $update = $this->m_data->update(
             "permintaan_bb",
             ["acc_kejaksaan" => 1],
@@ -50,7 +60,7 @@ class Permintaan_barang_bukti extends MY_Controller
         } else {
             $this->session->set_flashdata("gagal", "Gagal melakukan konfirmasi . Terjadi Kesalahan pada server");                    
         }
-        $this->index();
+        redirect(base_url("/permintaan-barang-bukti"));
     }
 
     public function get_permintaan_bb($id_permintaan_bb = NULL, $kode_req)
