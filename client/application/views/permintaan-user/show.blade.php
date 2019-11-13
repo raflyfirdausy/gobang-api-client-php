@@ -94,12 +94,11 @@
                       <td>{{ $item->status_riwayat }}</td>
                       <td>
                           <button 
-                            data-no_reg_tilang  ="" 
-                            data-nama_terpidana ="" 
+                            data-id_permintaan  = "{{ $item->id_permintaan }}"                             
                             data-toggle="modal" 
                             data-target="#modal-detail" 
                             type="button" 
-                            class="hapusData btn btn-danger col-xs-12">Detail
+                            class="detailData btn btn-danger col-xs-12">Detail
                           </button>
                         </td>
                   </tr>                      
@@ -120,7 +119,70 @@
                 <h4 class="modal-title"><b>Detail Data Permintaan User</b></h4>
               </div>              
                   <div class="modal-body">  
-                      <b>Coming Soon!</b>                       
+                      <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">No Reg Tilang</label>
+                                <input readonly value="Loading..." type="text" id="m_no_reg_tilang" name="m_no_reg_tilang" class="form-control">  
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Nama terpidana</label>
+                                <input readonly value="Loading..." type="text" id="m_nama_terpidana" name="m_nama_terpidana" class="form-control">  
+                            </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Alamat Terpidana</label>
+                                <input readonly value="Loading..." type="text" id="m_alamat_terpidana" name="m_alamat_terpidana" class="form-control">  
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Total Biaya (Termasuk admin dan ongkir)</label>
+                                <input readonly value="Loading..." type="text" id="m_denda_plus_perkara" name="m_denda_plus_perkara" class="form-control">  
+                            </div>
+                        </div>
+                      </div>                            
+                      <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">Nama Penerima</label>
+                                <input readonly value="Loading..." type="text" id="m_nama_penerima" name="m_alamat_penerima" class="form-control">  
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-label">No Hp Penerima</label>
+                                <input readonly value="Loading..." type="text" id="m_no_hp" name="m_no_hp" class="form-control">  
+                            </div>
+                        </div>
+                      </div> 
+                      <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-label">Alamat Penerima</label>
+                                <input readonly value="Loading..." type="text" id="m_alamat_penerima" name="m_alamat_penerima" class="form-control">  
+                            </div>
+                        </div>                        
+                      </div> 
+                      <div class="row">
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="form-label">Nomor VA</label>
+                                  <input readonly value="Loading..." type="text" id="m_nomor_va" name="m_nomor_va" class="form-control">  
+                              </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="form-group">
+                                  <label class="form-label">Posisi Barang Bukti</label>
+                                  <input readonly value="Loading..." type="text" id="m_posisi" name="m_posisi" class="form-control">  
+                              </div>
+                          </div>
+                        </div> 
                   </div>
                   <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>                      
@@ -171,12 +233,29 @@
 <script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 <script>
 
-  $(".hapusData").click(function(){
-        let no_reg_tilang      = $(this).data('no_reg_tilang');
-        let nama_terpidana     = $(this).data('nama_terpidana');
-    
-        $("#info_hapus").text("Kamu akan menghapus data " + nama_terpidana + " dengan No Registrasi Tilang " + no_reg_tilang);
-        $("#NoRegTilang").val(no_reg_tilang);
+  $(".detailData").click(function(){
+        let id_permintaan      = $(this).data('id_permintaan');           
+        $.ajax({
+          type: 'GET',
+          url: '{{ base_url("riwayat-permintaan-user/ajax_get_data_permintaan/") }}' + id_permintaan,
+          dataType: 'json',
+          success: function(x){
+              if(x.status == 1){
+                  $("#m_no_reg_tilang").val(x.data.no_reg_tilang);
+                  $("#m_nama_terpidana").val(x.data.nama_terpidana);
+                  $("#m_nama_penerima").val(x.data.nama_penerima);
+                  $("#m_alamat_terpidana").val(x.data.alamat_terpidana);
+                  $("#m_denda_plus_perkara").val(parseInt(x.data.nominal_denda) + parseInt(x.data.nominal_perkara) + parseInt(x.data.nominal_pos) + parseInt(x.data.nominal_gobang));
+                  $("#m_nama_penerima").val(x.data.nama_penerima);
+                  $("#m_no_hp").val(x.data.nomer_hp);
+                  $("#m_alamat_penerima").val(x.data.detail_alamat + ", " + x.data.alamat_antar);
+                  $("#m_nomor_va").val(x.data.no_va);
+                  $("#m_posisi").val(x.data.posisi);                  
+              } else {
+                  alert("Terjadi kesalahan pada server");
+              }
+          }
+      });
     });
 
     $(function () {

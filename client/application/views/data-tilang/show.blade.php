@@ -81,7 +81,7 @@ Data Tilang
                   <th>Alamat</th>                  
                   <th>Total Denda</th>
                   <th>Posisi Barang Bukti</th>
-                  <th>Request Antar</th>
+                  {{-- <th>Request Antar</th> --}}
                   <th>Waktu Input</th>
                   <th>Aksi</th>
                 </tr>
@@ -95,7 +95,7 @@ Data Tilang
                       <td>{{ $item->alamat_terpidana }}</td>                
                       <td>{{ (int) $item->denda + (int) $item->biaya_perkara }}</td>
                       <td>{{ $item->posisi }}</td>
-                      <td>TIDAK</td>
+                      {{-- <td>TIDAK</td> --}}
                       <td>{{ $item->created_at }}</td>
                       <td>
 
@@ -198,7 +198,7 @@ Data Tilang
                   </div>
                   <div class="col-md-6">
                       <div class="form-group">
-                          <label class="form-label">Posisi</label>
+                          <label class="form-label">Posisi Barang Bukti</label>
                           <input readonly value="Loading..." type="text" id="m_posisi" name="m_posisi" class="form-control">  
                       </div>
                   </div>
@@ -294,7 +294,7 @@ Data Tilang
                   $("#m_tanggal_putusan").val(x.data.tgl_putusan);
                   $("#m_denda").val(x.data.denda);
                   $("#m_biaya_perkara").val(x.data.biaya_perkara);
-                  $("#m_posisi").val("SABAR");
+                  $("#m_posisi").val(x.data.posisi);
               } else {
                   alert(x.respon_mess);
               }

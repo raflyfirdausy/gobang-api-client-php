@@ -8,8 +8,22 @@ class Riwayat_permintaan_user extends MY_Controller
         parent::__construct();
     }
 
-    public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
-    {
+    public function ajax_get_data_permintaan($id_permintaan = NULL){
+        if(sizeof($this->get_data_permintaan($id_permintaan)) > 0){
+            $result = array(
+                "status"    => 1,
+                "data"      => $this->get_data_permintaan($id_permintaan)[0]
+            );
+        } else {
+            $result = array(
+                "status"    => 0,
+                "data"      => NULL);
+        }
+
+        echo json_encode($result);
+    }
+
+    public function get_data_permintaan($id_permintaan = NULL){
         $data_permintaan    = $this->m_data->select(array(
             "permintaan_user.*",
             "permintaan_user.created_at as waktu_permintaan",
@@ -29,9 +43,20 @@ class Riwayat_permintaan_user extends MY_Controller
             "permintaan_user.no_reg_tilang = daftar_terpidana.no_reg_tilang",
             "INNER"
         );
+        if($id_permintaan != NULL){
+            $data_permintaan    = $this->m_data->getWhere("permintaan_user.id_permintaan", $id_permintaan);
+        }
+
         $data_permintaan    = $this->m_data->order_by("permintaan_user.created_at", "DESC");
         $data_permintaan    = $this->m_data->getData("permintaan_user")->result();
 
+        // echo json_encode( $data_permintaan);
+        return $data_permintaan;
+    }
+
+    public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
+    {
+        $data_permintaan = $this->get_data_permintaan();
         foreach($data_permintaan as $item){
             $item->total_biaya = (int) $item->nominal_denda + 
                                  (int) $item->nominal_perkara +
@@ -58,8 +83,7 @@ class Riwayat_permintaan_user extends MY_Controller
                         }
                     }
                 }
-            }
-            
+            }            
         }        
 
         // d($data_permintaan);
