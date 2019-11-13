@@ -61,8 +61,9 @@
                 <tr>
                   <th>No</th>
                   <th>No Permintaan</th>
-                  <th>Jumlah Barang Bukti</th>                  
+                  <th>Jumlah Barang Bukti</th>
                   <th>Status</th>                  
+                  <th>Waktu Permintaan</th>
                   <th width="20%">Aksi</th>
                 </tr>
                 </thead>
@@ -71,10 +72,11 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->id_permintaan_bb }}</td>
-                            <td>{{ $item->total_permintaan }}</td>
+                            <td>{{ $item->total_permintaan }} Barang Bukti</td>                            
                             <td>
                                 {{ $item->acc_kejaksaan == 0 ? "Menunggu Konfirmasi" : "Diterima" }}
                             </td>
+                            <td>{{ $item->created_at }}</td>
                             <td>
                                 <button 
                                     data-toggle="modal" 
