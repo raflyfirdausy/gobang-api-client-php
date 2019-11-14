@@ -28,16 +28,17 @@ class Riwayat_permintaan_user extends MY_Controller
             "permintaan_user.*",
             "permintaan_user.created_at as waktu_permintaan",
             "bb_status.id_bb_status as id_bb_status",
-            "bb_status.no_resi as no_resi",
-            "bb_status.nama_penerima as nama_penerima_bb",
+            "bb_status.no_resi as no_resi",            
             "bb_status.created_at as waktu_pembayaran",
             "daftar_terpidana.*"            
         ));
+        
         $data_permintaan    = $this->m_data->getJoin(
             "bb_status",
             "permintaan_user.id_permintaan = bb_status.id_permintaan",
             "LEFT"
         );
+        
         $data_permintaan    = $this->m_data->getJoin(
             "daftar_terpidana",
             "permintaan_user.no_reg_tilang = daftar_terpidana.no_reg_tilang",
@@ -48,14 +49,13 @@ class Riwayat_permintaan_user extends MY_Controller
         }
 
         $data_permintaan    = $this->m_data->order_by("permintaan_user.created_at", "DESC");
-        $data_permintaan    = $this->m_data->getData("permintaan_user")->result();
-
+        $data_permintaan    = $this->m_data->getData("permintaan_user")->result();        
         // echo json_encode( $data_permintaan);
         return $data_permintaan;
     }
 
     public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
-    {
+    {        
         $data_permintaan = $this->get_data_permintaan();
         foreach($data_permintaan as $item){
             $item->total_biaya = (int) $item->nominal_denda + 
