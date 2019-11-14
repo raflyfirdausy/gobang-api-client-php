@@ -71,11 +71,11 @@
             </a>
           </li>   
          
-          <li class="">
-              <a href="#"><i class="fa fa-bell-o"></i> <span>[P] Riwayat Pengambilan BB</span></a>
+          <li class="{{ $aktif == 'riwayat' ? 'active' : '' }}">
+              <a href="{{ base_url('riwayat-pengambilan-barang-bukti') }}"><i class="fa fa-bell-o"></i> <span>[P] Riwayat Pengambilan BB</span></a>
           </li>  
-          <li class="">
-              <a href="#"><i class="fa fa-check-square-o"></i> <span>[P] Status Barang Bukti</span></a>
+          <li class="{{ $aktif == 'input_resi' ? 'active' : '' }}">
+              <a href="{{ base_url('input-nomor-resi') }}"><i class="fa fa-check-square-o"></i> <span>[P] Input Nomor Resi</span></a>
           </li>  
         </ul>
       </section>

@@ -25,24 +25,25 @@ class Permintaan_barang_bukti extends MY_Controller
     {
         if ($id == NULL) {
             redirect(base_url('permintaan-barang-bukti'));
-        } else {            
+        } else {
             $data["data_permintaan"]    = $this->get_permintaan_bb($id, 1); // 1 kode req sukses
             $data["data_gagal"]         = $this->get_permintaan_bb($id, 2); // 2 kode ga di req (gagal)                
             $data["qr_code"]            = RFL_ENCRYPT($id);
             $data["no"]                 = $id;
             $mpdf = new \Mpdf\Mpdf();
-            $mpdf->WriteHTML($this->load->view('detail-permintaan', $data, TRUE));            
+            $mpdf->WriteHTML($this->load->view('detail-permintaan', $data, TRUE));
             $filename = "DETAIL_PERMINTAAN_NO_" . $id . "_" . date("d_m_Y_H_i_s") . ".pdf";
             $mpdf->Output($filename, 'D');
         }
     }
 
-    public function konfirmasi_barang_bukti(){
-        $nomor_permintaan = $this->input->post('nomor_permintaan');   
+    public function konfirmasi_barang_bukti()
+    {
+        $nomor_permintaan = $this->input->post('nomor_permintaan');
         $dataSukses = $this->get_permintaan_bb($nomor_permintaan, 1);
-                
-        foreach($dataSukses["data"] as $item){
-            $updateStatus = $this->m_data->update(
+
+        foreach ($dataSukses["data"] as $item) {
+            $this->m_data->update(
                 "daftar_terpidana",
                 ["posisi" => "pos"], // 1 sukses | 2 gagal
                 ["no_reg_tilang"  => $item->no_reg_tilang]
@@ -55,10 +56,10 @@ class Permintaan_barang_bukti extends MY_Controller
             ["id_permintaan_bb"  => $nomor_permintaan]
         );
 
-        if($update > 0){
-            $this->session->set_flashdata("sukses", "Permintaan barang bukti nomor $nomor_permintaan berhasil di konfirmasi." );                    
+        if ($update > 0) {
+            $this->session->set_flashdata("sukses", "Permintaan barang bukti nomor $nomor_permintaan berhasil di konfirmasi.");
         } else {
-            $this->session->set_flashdata("gagal", "Gagal melakukan konfirmasi . Terjadi Kesalahan pada server");                    
+            $this->session->set_flashdata("gagal", "Gagal melakukan konfirmasi . Terjadi Kesalahan pada server");
         }
         redirect(base_url("/permintaan-barang-bukti"));
     }
