@@ -49,34 +49,38 @@
             </ul>
           </li>  
           @endif
-          <li class="{{ $aktif == 'data_tilang' ? 'active' : '' }}">
-            <a href="{{ base_url('data-tilang/') }}"><i class="fa fa-laptop"></i> <span>Data Tilang</span></a>
-          </li>      
-          <li class="{{ $aktif == 'riwayat_permintaan_user' ? 'active' : '' }}">
-            <a href="{{ base_url('riwayat-permintaan-user') }}">
-              <i class="fa fa-bell-o"></i> <span>Riwayat Permintaan User</span>              
-            </a>
-          </li>    
-          <li class="{{ $aktif == 'permintaan_barang_bukti' ? 'active' : '' }}">
-              <a href="{{ base_url('permintaan-barang-bukti') }}"><i class="fa fa-laptop"></i> <span>Permintaan Barang Bukti</span></a>
-          </li>  
-          <li class="{{ $aktif == 'daftar_permintaan_user' ? 'active' : '' }}">
-            <a href="{{ base_url('daftar-permintaan-user') }}">
-              <i class="fa fa-check-square-o"></i> <span>[P] Daftar Permintaan User</span>
-              @if ($g_permintaan_bb > 0)
-                <span class="pull-right-container">
-                  <small class="label pull-right bg-blue">{{{ $g_permintaan_bb }}}</small>
-                </span>
-              @endif              
-            </a>
-          </li>   
-         
-          <li class="{{ $aktif == 'riwayat' ? 'active' : '' }}">
-              <a href="{{ base_url('riwayat-pengambilan-barang-bukti') }}"><i class="fa fa-bell-o"></i> <span>[P] Riwayat Pengambilan BB</span></a>
-          </li>  
-          <li class="{{ $aktif == 'input_resi' ? 'active' : '' }}">
-              <a href="{{ base_url('input-nomor-resi') }}"><i class="fa fa-check-square-o"></i> <span>[P] Input Nomor Resi</span></a>
-          </li>  
+          @if ($user_data->level == 'super_admin' || $user_data->level == 'admin')
+            <li class="{{ $aktif == 'data_tilang' ? 'active' : '' }}">
+              <a href="{{ base_url('data-tilang/') }}"><i class="fa fa-laptop"></i> <span>Data Tilang</span></a>
+            </li>      
+            <li class="{{ $aktif == 'riwayat_permintaan_user' ? 'active' : '' }}">
+              <a href="{{ base_url('riwayat-permintaan-user') }}">
+                <i class="fa fa-bell-o"></i> <span>Riwayat Permintaan User</span>              
+              </a>
+            </li>    
+            <li class="{{ $aktif == 'permintaan_barang_bukti' ? 'active' : '' }}">
+                <a href="{{ base_url('permintaan-barang-bukti') }}"><i class="fa fa-laptop"></i> <span>Permintaan Barang Bukti</span></a>
+            </li>
+          @endif                   
+          @if ($user_data->level == 'pos')
+            <li class="{{ $aktif == 'daftar_permintaan_user' ? 'active' : '' }}">
+              <a href="{{ base_url('daftar-permintaan-user') }}">
+                <i class="fa fa-check-square-o"></i> <span>Daftar Permintaan User</span>
+                @if ($g_permintaan_bb > 0)
+                  <span class="pull-right-container">
+                    <small class="label pull-right bg-blue">{{{ $g_permintaan_bb }}}</small>
+                  </span>
+                @endif              
+              </a>
+            </li>   
+            
+            <li class="{{ $aktif == 'riwayat' ? 'active' : '' }}">
+                <a href="{{ base_url('riwayat-pengambilan-barang-bukti') }}"><i class="fa fa-bell-o"></i> <span>Riwayat Pengambilan BB</span></a>
+            </li>  
+            <li class="{{ $aktif == 'input_resi' ? 'active' : '' }}">
+                <a href="{{ base_url('input-nomor-resi') }}"><i class="fa fa-check-square-o"></i> <span>Input Nomor Resi</span></a>
+            </li>  
+          @endif          
         </ul>
       </section>
     </aside>

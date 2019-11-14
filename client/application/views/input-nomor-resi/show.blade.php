@@ -53,50 +53,19 @@
           <div class="box box-success">
             <div class="box-header">                
               
-            </div>
-            <!-- /.box-header -->
+            </div>            
             <div class="box-body table-responsive">
               <table id="table-petugas" class="table table-bordered table-striped">
                 <thead>
-                <tr>
-                  <th>No</th>
-                  <th>No Reg Tilang</th>
-                  <th>Nama Penerima</th>
-                  <th>Alamat Tujuan Antar</th> 
-                  <th>Nomor Hp</th>                                   
-                  <th>Aksi</th>
-                </tr>
+                    <tr>
+                    <th>No</th>
+                    <th>No Reg Tilang</th>
+                    <th>Nama Penerima</th>
+                    <th>Alamat Tujuan Antar</th> 
+                    <th>Nomor Hp</th>                                   
+                    <th>Aksi</th>
+                    </tr>
                 </thead>
-                <tbody>
-                    {{-- @foreach ($data_permintaan_bb as $item)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $item->id_permintaan_bb }} / GB-02 / GOBANG / {{ numberToRomawi(date('m')) }} / {{ date('Y') }}</td>
-                            <td>{{ $item->total_permintaan }} Barang Bukti</td>                            
-                            <td>
-                                {{ $item->acc_kejaksaan == 0 ? "Menunggu Konfirmasi" : "Di Terima" }}
-                            </td>
-                            <td>{{ $item->created_at }}</td>
-                            <td>
-                                <button                                   
-                                    data-id_permintaan_bb = "{{ $item->id_permintaan_bb }}"
-                                    data-toggle="modal"                                     
-                                    type="button" 
-                                    class="btnLihatDetail btn btn-primary ">Lihat Detail
-                                </button>          
-                                <button 
-                                    {{ $item->acc_kejaksaan == 1 ? "disabled" : "" }}
-                                    data-nomer_permintaan = "{{ $item->id_permintaan_bb }}"
-                                    data-total_permintaan = "{{ $item->total_permintaan }}"
-                                    data-toggle="modal" 
-                                    data-target="#modal-terima" 
-                                    type="button" 
-                                    class="konfirmasiBarangBukti btn btn-success ">Konfirmasi
-                                </button>  
-                            </td>                                   
-                        </tr>
-                    @endforeach   --}}
-                </tbody>
               </table>
             </div>
           </div>
@@ -106,7 +75,7 @@
       <div class="modal fade" id="modal-input">
         <div class="modal-dialog">
           <div class="modal-content"> 
-            <form action="{{ base_url() }}" method="post">             
+            <form action="{{ base_url('input-nomor-resi/proses') }}" method="post">             
               <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
