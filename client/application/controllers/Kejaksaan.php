@@ -7,7 +7,7 @@ class Kejaksaan extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $userData = $this->m_data->getWhere("nip", $this->session->userdata("login")->nip);
+        $userData = $this->m_data->getWhere("user_id", $this->session->userdata("login")->user_id);
         $userData = $this->m_data->getData("admin")->row();
         if ($userData->level !== "super_admin") {
             redirect(base_url());
@@ -18,7 +18,7 @@ class Kejaksaan extends MY_Controller
     {
 
         $admin = $this->m_data->select(array(
-            "admin.nip as nip",
+            "admin.user_id as user_id",
             "jabatan.nama_jabatan as jabatan",
             "admin.nama as nama",
             "admin.email as email",

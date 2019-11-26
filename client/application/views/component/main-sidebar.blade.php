@@ -12,8 +12,12 @@
                 echo "Kepala Kejaksaan";
               } else if ($user_data->level == "admin"){
                 echo "Admin Kejaksaan";
-              } else {
+              } else if ($user_data->level == "pgm"){
+                echo "POS Giro Mobile";
+              } else if ($user_data->level == "pos"){
                 echo "Kantor Pos";
+              } else {
+                echo "Tidak Diketahui";
               }
           @endphp
             </a>
@@ -22,14 +26,21 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">
             @php
-                if($user_data->level == "super_admin"){
-                  echo "Kepala Kejaksaan";
+               if($user_data->level == "super_admin"){
+                echo "Kepala Kejaksaan";
                 } else if ($user_data->level == "admin"){
                   echo "Admin Kejaksaan";
-                } else {
+                } else if ($user_data->level == "pgm"){
+                  echo "POS Giro Mobile";
+                } else if ($user_data->level == "pos"){
                   echo "Kantor Pos";
+                } else {
+                  echo "Tidak Diketahui";
                 }
             @endphp
+          </li>
+          <li class="{{ $aktif == 'profile_pgm' ? 'active' : '' }}">
+            <a href="{{ base_url('profile-pgm') }}"><i class="fa fa-fire"></i> <span>Profile PGM</span></a>
           </li>
           <li class="{{ $aktif == 'dashboard' ? 'active' : '' }}">
             <a href="{{ base_url('dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>

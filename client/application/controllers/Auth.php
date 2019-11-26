@@ -9,7 +9,7 @@ class Auth extends MY_Controller
         if ($this->session->has_userdata('login')) {
             redirect(base_url("dashboard"));
         }
-        return $this->loadView('login');
+        return $this->loadView('login');        
     }
 
     public function proses_login()
@@ -25,7 +25,7 @@ class Auth extends MY_Controller
             $this->m_data->update(
                 "admin",
                 ["last_login" => date("Y-m-d H:i:s")],
-                ["nip" => $cekLogin->nip]
+                ["user_id" => $cekLogin->user_id]
             );
             $this->session->set_userdata("login", $cekLogin);
             redirect(base_url("dashboard"));

@@ -6,7 +6,7 @@ class Pos extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        $userData = $this->m_data->getWhere("nip", $this->session->userdata("login")->nip);
+        $userData = $this->m_data->getWhere("user_id", $this->session->userdata("login")->user_id);
         $userData = $this->m_data->getData("admin")->row();
         if ($userData->level !== "super_admin") {
             redirect(base_url());

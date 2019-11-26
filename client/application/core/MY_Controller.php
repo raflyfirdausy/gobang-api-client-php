@@ -23,7 +23,7 @@ class MY_Controller extends CI_Controller
         } 
 
         if($CI->session->userdata('login')){
-            $userData = $this->m_data->getWhere("nip", $CI->session->userdata("login")->nip);
+            $userData = $this->m_data->getWhere("user_id", $CI->session->userdata("login")->user_id);
             $userData = $this->m_data->getData("admin")->row();
         } else {
             $userData = NULL;
