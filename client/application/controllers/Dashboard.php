@@ -13,6 +13,7 @@ class Dashboard extends MY_Controller
 
     public function index()
     {        
+        // d($_SERVER['SERVER_NAME']);
         $totalDataTilang        = $this->m_data->getData("daftar_terpidana")->num_rows();
         $totalPermintaanUser    = $this->m_data->getData("permintaan_user")->num_rows();
 
@@ -26,8 +27,8 @@ class Dashboard extends MY_Controller
         $data["aktif"]                  = "dashboard";
         $data["totalDataTilang"]        = $totalDataTilang;
         $data["totalPermintaanUser"]    = $totalPermintaanUser;
-        $data["totalPermintaanBB"]      = $totalPermintaanBB->total;
-        $data["permintaanBBAktif"]      = $permintaanBBAktif->total;
+        $data["totalPermintaanBB"]      = $totalPermintaanBB->total == null ? "0" : $totalPermintaanBB->total;
+        $data["permintaanBBAktif"]      = $permintaanBBAktif->total == null ? "0" : $permintaanBBAktif->total;
 
         if($this->userData->level == "pos"){
             redirect(base_url('daftar-permintaan-user'));

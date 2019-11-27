@@ -93,8 +93,7 @@ class Data_tilang extends MY_Controller
                             "jumlah_penitipan" => $aktifSheet->getCell('G' . $i)->getValue(),
                             "tgl_putusan" => $tgl_putusan,
                             "denda" => $aktifSheet->getCell('I' . $i)->getValue(),
-                            "biaya_perkara" => $aktifSheet->getCell('J' . $i)->getValue(),
-                            "sudah_diambil" => 0,
+                            "biaya_perkara" => $aktifSheet->getCell('J' . $i)->getValue(),                            
                             "posisi" => "kejaksaan"
                         );
                         $insert = $this->m_data->insert("daftar_terpidana", $item);
