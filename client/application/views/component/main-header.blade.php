@@ -20,7 +20,22 @@
                   <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">  
                   <p>
                     {{ $user_data->nama }}
-                  <small>Terakhir Login : {{ date("d M Y | H:i:s", strtotime($user_data->last_login)) }} WIB</small>
+                    <small>
+                        @php
+                          if($user_data->level == "super_admin"){
+                            echo "Kepala Kejaksaan";
+                            } else if ($user_data->level == "admin"){
+                              echo "Admin Kejaksaan";
+                            } else if ($user_data->level == "pgm"){
+                              echo "POS Giro Mobile";
+                            } else if ($user_data->level == "pos"){
+                              echo "Kantor Pos";
+                            } else {
+                              echo "Tidak Diketahui";
+                            }
+                        @endphp
+                    </small>
+                  {{-- <small>Terakhir Login : {{ date("d M Y | H:i:s", strtotime($user_data->last_login)) }} WIB</small> --}}
                   </p>
                 </li>
                 <!-- Menu Footer-->

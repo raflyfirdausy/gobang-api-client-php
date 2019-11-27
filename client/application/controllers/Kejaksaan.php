@@ -18,17 +18,15 @@ class Kejaksaan extends MY_Controller
     {
 
         $admin = $this->m_data->select(array(
-            "admin.user_id as user_id",
-            "jabatan.nama_jabatan as jabatan",
+            "admin.user_id as user_id",        
             "admin.nama as nama",
             "admin.email as email",
             "admin.no_hp as no_hp",
             "admin.alamat as alamat",
-            "admin.jenis_kelamin as jenis_kelamin",
-            "admin.foto as foto"
-        ));
-        $admin = $this->m_data->getJoin('jabatan', 'admin.id_jabatan = jabatan.id_jabatan', "INNER");
-        $admin = $this->m_data->getData('admin')->result();
+            "admin.jenis_kelamin as jenis_kelamin"            
+        ));        
+        $admin  = $this->m_data->getWhere("level", "admin");
+        $admin  = $this->m_data->getData('admin')->result();
 
         foreach ($admin as $a) {
             $a->jenis_kelamin = $a->jenis_kelamin == "0" ? "Wanita" : "Pria";

@@ -34,6 +34,7 @@ class MY_Controller extends CI_Controller
             "bb_status.id_permintaan = permintaan_user.id_permintaan",
             "INNER"
         );
+        
         $permintaan_bb   = $this->m_data->getJoin(
             "daftar_terpidana", 
             "permintaan_user.no_reg_tilang = daftar_terpidana.no_reg_tilang",

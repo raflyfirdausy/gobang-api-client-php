@@ -21,13 +21,13 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>1234</h3>
+              <h3>{{ $totalDataTilang }}</h3>
               <p>Total data tilang</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
             </div>
-            <a href="#" class="small-box-footer">Info Lengkap <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ base_url('data-tilang') }}" class="small-box-footer">Info Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -35,14 +35,13 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>500</h3>
-
+              <h3>{{ $totalPermintaanUser }}</h3>
               <p>Total permintaan</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="#" class="small-box-footer">Info Lengkap <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ base_url('riwayat-permintaan-user') }}" class="small-box-footer">Info Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -50,14 +49,13 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
-
-              <p>User Registrations</p>
+              <h3>{{ $permintaanBBAktif }}</h3>
+              <p>Permintaan BB Aktif</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">Info Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ base_url('permintaan-barang-bukti') }}" class="small-box-footer">Info Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -65,14 +63,13 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Unique Visitors</p>
+              <h3>{{ $totalPermintaanBB }}</h3>
+              <p>Total Permintaan BB</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">Info Selengkapnya<i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ base_url('permintaan-barang-bukti') }}" class="small-box-footer">Info Selengkapnya <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

@@ -39,12 +39,15 @@
                 }
             @endphp
           </li>
-          <li class="{{ $aktif == 'profile_pgm' ? 'active' : '' }}">
+          {{-- <li class="{{ $aktif == 'profile_pgm' ? 'active' : '' }}">
             <a href="{{ base_url('profile-pgm') }}"><i class="fa fa-fire"></i> <span>Profile PGM</span></a>
-          </li>
-          <li class="{{ $aktif == 'dashboard' ? 'active' : '' }}">
-            <a href="{{ base_url('dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
-          </li>
+          </li> --}}
+          @if ($user_data->level != "pos")
+            <li class="{{ $aktif == 'dashboard' ? 'active' : '' }}">
+              <a href="{{ base_url('dashboard') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a>
+            </li>
+          @endif
+          
           @if ($user_data->level == 'super_admin')            
           <li class="treeview {{ $aktif == 'petugas' ? 'active' : '' }}">
             <a href="#">
