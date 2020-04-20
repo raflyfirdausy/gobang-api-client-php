@@ -277,7 +277,7 @@
       },
       function (start, end) {        
         $('#daterange-btn span').html(start.format('D MMMM YYYY') + ' - ' + end.format('D MMMM YYYY'));                
-        window.location.href = "{{ base_url('data-tilang/index/') }}" + start.format('DD-MM-YYYY') + '/' + end.format('DD-MM-YYYY');
+        window.location.href = "{{ base_url('riwayat-permintaan-user/index/') }}" + start.format('DD-MM-YYYY') + '/' + end.format('DD-MM-YYYY');
       }
     )
     })

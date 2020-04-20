@@ -247,7 +247,7 @@ Data Tilang
             <form enctype="multipart/form-data" role="form" method="POST" action="{{ base_url('data-tilang/import-tilang') }}">
               <div class="modal-body">
                   Sebelum upload file excel data tilang, pastikan formatnya sudah sesuai. Silahkan download contoh format excel data tilang
-                  <b><a href="{{ asset('template/format-import-data-tilang.xlsx') }}"> DI SINI </a></b>
+                  <b><a href="{{ asset('template/contoh-format-import-data-tilang.xls') }}"> DI SINI </a></b>
                   <br><br>
                 
                   <div class="form-group">

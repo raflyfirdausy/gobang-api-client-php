@@ -11,7 +11,7 @@ class Data_tilang extends MY_Controller
 {
     public function ___construct()
     {
-        parent::___construct();
+        parent::__construct();
     }
 
     public function index($tanggal_awal = NULL, $tanggal_akhir = NULL)
@@ -66,7 +66,7 @@ class Data_tilang extends MY_Controller
                 $data_error = array();
                 $sukses = 0;
                 $gagal = 0;
-                $awalData = 11;
+                $awalData = 4;
                 for ($i = $awalData; $i <= count($allDataInSheet); $i++) {
                     if (
                         !is_numeric($aktifSheet->getCell('A' . $i)->getValue()) ||
@@ -74,28 +74,71 @@ class Data_tilang extends MY_Controller
                     ) {
                         break;
                     } else {
-                        // $tgl_penitipan = $aktifSheet->getCell('F' . $i)->getValue();
-                        $tgl_penitipan = $allDataInSheet[$i]["F"];
-                        $tgl_penitipan = str_replace('/', '-', $tgl_penitipan);
-                        $tgl_penitipan = date("Y-m-d", strtotime($tgl_penitipan));
+                        // // $tgl_penitipan = $aktifSheet->getCell('F' . $i)->getValue();
+                        // $tgl_penitipan = $allDataInSheet[$i]["F"];
+                        // $tgl_penitipan = str_replace('/', '-', $tgl_penitipan);
+                        // $tgl_penitipan = date("Y-m-d", strtotime($tgl_penitipan));
 
-                        // $tgl_putusan = $aktifSheet->getCell('H' . $i)->getValue();
-                        $tgl_putusan = $allDataInSheet[$i]["H"];
+                        // // $tgl_putusan = $aktifSheet->getCell('H' . $i)->getValue();
+                        // $tgl_putusan = $allDataInSheet[$i]["H"];
+                        // $tgl_putusan = str_replace('/', '-', $tgl_putusan);
+                        // $tgl_putusan = date("Y-m-d", strtotime($tgl_putusan));
+
+                        $tgl_perkara = $allDataInSheet[$i]["C"];
+                        $tgl_perkara = str_replace('/', '-', $tgl_perkara);
+                        $tgl_perkara = date("Y-m-d", strtotime($tgl_perkara));
+
+                        $tgl_putusan = $allDataInSheet[$i]["T"];
                         $tgl_putusan = str_replace('/', '-', $tgl_putusan);
                         $tgl_putusan = date("Y-m-d", strtotime($tgl_putusan));
 
-                        $item = array(
-                            "nama_terpidana" => $aktifSheet->getCell('B' . $i)->getValue(),
-                            "no_reg_tilang" => $aktifSheet->getCell('C' . $i)->getValue(),
-                            "alamat_terpidana" => $aktifSheet->getCell('D' . $i)->getValue(),
-                            "nomor_briva" => $aktifSheet->getCell('E' . $i)->getValue(),
-                            "tgl_penitipan" => $tgl_penitipan,
-                            "jumlah_penitipan" => $aktifSheet->getCell('G' . $i)->getValue(),
-                            "tgl_putusan" => $tgl_putusan,
-                            "denda" => $aktifSheet->getCell('I' . $i)->getValue(),
-                            "biaya_perkara" => $aktifSheet->getCell('J' . $i)->getValue(),                            
-                            "posisi" => "kejaksaan"
+                        $tgl_bayar = $allDataInSheet[$i]["Y"];
+                        $tgl_bayar = str_replace('/', '-', $tgl_bayar);
+                        $tgl_bayar = date("Y-m-d", strtotime($tgl_bayar));
+
+                        $item   = array(
+                            "no_reg_tilang"         => $aktifSheet->getCell('B' . $i)->getValue(),
+                            "tgl_perkara"           => $tgl_perkara,
+                            "form"                  => $aktifSheet->getCell('D' . $i)->getValue(),
+                            "nomor_briva"           => $aktifSheet->getCell('E' . $i)->getValue(),
+                            "nrp_petugas"           => $aktifSheet->getCell('F' . $i)->getValue(),
+                            "nama_petugas"          => $aktifSheet->getCell('G' . $i)->getValue(),
+                            "nama_terpidana"        => $aktifSheet->getCell('H' . $i)->getValue(),  
+                            "alamat_terpidana"      => $aktifSheet->getCell('I' . $i)->getValue(),
+                            "pasal"                 => $aktifSheet->getCell('J' . $i)->getValue(),
+                            "barang_bukti"          => $aktifSheet->getCell('K' . $i)->getValue(),
+                            "jenis_kendaraan"       => $aktifSheet->getCell('L' . $i)->getValue(),
+                            "nomor_polisi"          => $aktifSheet->getCell('M' . $i)->getValue(),
+                            "jumlah_penitipan"      => $aktifSheet->getCell('N' . $i)->getValue(),
+                            "kode_satker_pn"        => $aktifSheet->getCell('O' . $i)->getValue(),
+                            "no_perkara"            => $aktifSheet->getCell('P' . $i)->getValue(),
+                            "nama_hakim"            => $aktifSheet->getCell('Q' . $i)->getValue(),
+                            "nama_panitera"         => $aktifSheet->getCell('R' . $i)->getValue(),
+                            "kode_satker_kejaksaan" => $aktifSheet->getCell('S' . $i)->getValue(),
+                            "tgl_putusan"           => $tgl_putusan,
+                            "hadir_verstek"         => $aktifSheet->getCell('U' . $i)->getValue(),
+                            "denda"                 => $aktifSheet->getCell('V' . $i)->getValue(),
+                            "biaya_perkara"         => $aktifSheet->getCell('W' . $i)->getValue(),
+                            "subsidair"             => $aktifSheet->getCell('X' . $i)->getValue(),
+                            "tgl_bayar"             => $tgl_bayar,
+                            "sisa_penitipan"        => $aktifSheet->getCell('Z' . $i)->getValue(),
+                            "sisa_penitipan"        => "",
+                            "posisi"                => "kejaksaan"
                         );
+
+                        // $item = array(
+                        //     "nama_terpidana" => $aktifSheet->getCell('B' . $i)->getValue(),
+                        //     "no_reg_tilang" => $aktifSheet->getCell('C' . $i)->getValue(),
+                        //     "alamat_terpidana" => $aktifSheet->getCell('D' . $i)->getValue(),
+                        //     "nomor_briva" => $aktifSheet->getCell('E' . $i)->getValue(),
+                        //     "tgl_penitipan" => $tgl_penitipan,
+                        //     "jumlah_penitipan" => $aktifSheet->getCell('G' . $i)->getValue(),
+                        //     "tgl_putusan" => $tgl_putusan,
+                        //     "denda" => $aktifSheet->getCell('I' . $i)->getValue(),
+                        //     "biaya_perkara" => $aktifSheet->getCell('J' . $i)->getValue(),                            
+                        //     "posisi" => "kejaksaan"
+                        // );
+
                         $insert = $this->m_data->insert("daftar_terpidana", $item);
                         if ($insert) {
                             $sukses++;
