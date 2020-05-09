@@ -12,8 +12,7 @@ class Dashboard extends MY_Controller
     }
 
     public function index()
-    {        
-        // d($_SERVER['SERVER_NAME']);
+    {                
         $totalDataTilang        = $this->m_data->getData("daftar_terpidana")->num_rows();
         $totalPermintaanUser    = $this->m_data->getData("permintaan_user")->num_rows();
 

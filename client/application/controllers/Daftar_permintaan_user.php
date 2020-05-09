@@ -70,6 +70,7 @@ class Daftar_permintaan_user extends MY_Controller
             "total_permintaan"  => sizeof($permintaan_bb),
             "data"              => $permintaan_bb
         );
+        // d($data_permintaan);
         return $data_permintaan;
     }
 
@@ -127,6 +128,9 @@ class Daftar_permintaan_user extends MY_Controller
                 $data["data_gagal"]         = $this->get_detail_permintaan($insert_id, 2); // 2 kode ga di req (gagal)                
                 $data["qr_code"]            = RFL_ENCRYPT($insert_id);
                 $data["no"]                 = $insert_id;
+                
+                // $this->load->view('berita-acara', $data, FALSE);
+                
                 $mpdf = new \Mpdf\Mpdf();
                 $mpdf->WriteHTML($this->load->view('berita-acara', $data, TRUE));
                 $mpdf->AddPage();

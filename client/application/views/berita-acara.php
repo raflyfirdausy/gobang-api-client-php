@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Go Barang Bukti dan Tilang" name="description" />
     <meta content="Rafli Firdausy Irawan" name="author" />
@@ -24,16 +25,25 @@
 
 <body style="font-family: Times New Roman">
     <div class="row">
-        <div class="col-xs-12">
+        <!-- <div class="col-xs-12">
             <img src="<?= asset("img/gobang-logo.png") ?>" height="60px" alt="">
             <img src="<?= asset("img/kejaksaan-logo.png") ?>" style="margin-left:5px" height="60px" alt="">
             <img src="<?= asset("img/pos-logo.png") ?>" height="60px" alt="">
             <img src="https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H|1&chl=<?= $qr_code ?>" class="pull-right" height="60px" alt="">
+        </div> -->
+
+        <div class="col-xs-12">
+            <img src="<?= asset("img/pos-logo.png") ?>" height="60px" alt="">
+            <img src="<?= asset("img/kejaksaan-logo.png") ?>" style="margin-left:5px" height="60px" alt="" class="pull-right">
+            <div class="text-center" style="margin-top: -60px;">
+                <img src="https://chart.googleapis.com/chart?cht=qr&chs=500x500&chld=H|1&chl=<?= $qr_code ?>" class="mx-auto d-block" height="60px" alt="">
+            </div>
         </div>
+
     </div>
     <div class="row">
         <div class="text-center" style="margin-top: 20px">
-            <h4 style="font-family: Times New Roman;font-weight: bold; padding-bottom:0px;"><u>BERITA ACARA PENGAMBILAN BARANG BUKTI TILANG</u></h4>
+            <h4 style="font-family: Times New Roman;font-weight: bold; padding-bottom:0px;"><u>BERITA ACARA SERAH TERIMA BARANG BUKTI TILANG</u></h4>
             <h5 style="font-family: Times New Roman;font-weight: bold; margin-top:-5px">No : <?= $no ?> / GB-01 / GOBANG / <?= numberToRomawi(date('m')) ?> / <?= date('Y') ?></h5>
         </div>
     </div>
@@ -41,7 +51,7 @@
     <div class="row" style="text-align:justify; text-justify:inter-word">
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Berdasarkan data permintaan pengiriman barang bukti tilang yang masuk pada sistem Go Barang Bukti dan Tilang (Gobang) sampai tanggal
-            <?= date('d M Y'); ?> adalah sebanyak <?= $data_permintaan["total_permintaan"] ?> buah. Kami pihak PT POS Indonesia telah menerimanya dan telah 
+            <?= date('d M Y'); ?> adalah sebanyak <?= $data_permintaan["total_permintaan"] ?> buah. Kami pihak PT POS Indonesia telah menerimanya dan telah
             melakukan pembayaran sebagai berikut :
         </p>
         <div class="table">
@@ -68,6 +78,7 @@
                         <th style="padding:5px;">Nama Terpidana</th>
                         <th style="padding:5px;">Alamat</th>
                         <th style="padding:5px;">Nomer Hp</th>
+                        <th style="padding:5px;">Nomer Briva</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -80,40 +91,41 @@
                             <td>
                                 <?= $item->detail_alamat ?>, <?= $item->alamat_antar ?> <?= $item->kode_pos ?>
                             </td>
-                            <td><?= $item->nomer_hp ?></td>
+                            <td> <?= $item->nomer_hp ?> </td>
+                            <td> <?= $item->nomor_briva ?> </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <?php if(sizeof($data_gagal["data"]) > 0) : ?>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                Berikut lampiran data yang gagal kami lakukan pembayaran :
-            </p>
-            <table cellpadding="10" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th style="padding:5px;">No</th>
-                        <th style="padding:5px;">No Reg Tilang</th>
-                        <th style="padding:5px;">Nama Terpidana</th>
-                        <th style="padding:5px;">Alamat</th>
-                        <th style="padding:5px;">Nomer Hp</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $no = 1;
-                    foreach ($data_gagal["data"] as $item) : ?>
+            <?php if (sizeof($data_gagal["data"]) > 0) : ?>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Berikut lampiran data yang gagal kami lakukan pembayaran :
+                </p>
+                <table cellpadding="10" class="table table-bordered table-striped">
+                    <thead>
                         <tr>
-                            <td style="padding:5px; text-align:center;"><?= $no++; ?></td>
-                            <td><?= $item->no_reg_tilang ?></td>
-                            <td><?= $item->nama_terpidana ?></td>
-                            <td>
-                                <?= $item->detail_alamat ?>, <?= $item->alamat_antar ?> <?= $item->kode_pos ?>
-                            </td>
-                            <td><?= $item->nomer_hp ?></td>
+                            <th style="padding:5px;">No</th>
+                            <th style="padding:5px;">No Reg Tilang</th>
+                            <th style="padding:5px;">Nama Terpidana</th>
+                            <th style="padding:5px;">Alamat</th>
+                            <th style="padding:5px;">Nomer Hp</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $no = 1;
+                        foreach ($data_gagal["data"] as $item) : ?>
+                            <tr>
+                                <td style="padding:5px; text-align:center;"><?= $no++; ?></td>
+                                <td><?= $item->no_reg_tilang ?></td>
+                                <td><?= $item->nama_terpidana ?></td>
+                                <td>
+                                    <?= $item->detail_alamat ?>, <?= $item->alamat_antar ?> <?= $item->kode_pos ?>
+                                </td>
+                                <td><?= $item->nomer_hp ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
             <?php endif ?>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Demikian berita acara pengambilan barang bukti tilang ini di buat,
@@ -133,11 +145,15 @@
         </div>
         <div class="col">
             <div class="col-xs-3 pull-left">
+                Diserahkan,
+                <br>
                 Kejaksaan
                 <br><br><br><br>
                 __________________________
             </div>
             <div class="col-xs-3 pull-right">
+                Diterima,
+                <br>
                 PT POS Indonesia
                 <br><br><br><br>
                 __________________________

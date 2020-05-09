@@ -145,8 +145,10 @@
         let nomer_permintaan      = $(this).data('nomer_permintaan');
         let total_permintaan      = $(this).data('total_permintaan');
         $('input[name="nomor_permintaan"]').val(nomer_permintaan);
+        
+        // INI BELUM BENAR =======================================================================================================
         $("#title_modal_terima").text("Konfirmasi pengambilan barang bukti dengan nomor permintaan " + nomer_permintaan + 
-        " ? Dengan mengeklik tombol konfirmasi di bawah ini, maka status tanggung jawab barang bukti akan berpindah ke PT POS Indonesia");
+        " / GB-02 / GOBANG / I / 2020 ? Dengan mengeklik tombol konfirmasi di bawah ini, maka status tanggung jawab barang bukti akan berpindah ke PT POS Indonesia");
     });
 
     $(function () {

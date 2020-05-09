@@ -61,7 +61,7 @@
                                 data-target="#modal-berita-acara" 
                                 type="button" 
                                 id="btn_ambil"
-                                class="btn btn-primary col-xs-12">Ambil Semua Barang Bukti
+                                class="btn btn-primary col-xs-12">Cetak Berita Acara Serah Terima
                           </button>
                     </div>
                 </div>
@@ -76,6 +76,7 @@
                     <th>Nama Terpidana</th>
                     <th>Alamat Tujuan Antar</th>
                     <th>Nomer Hp</th>
+                    <th>Nomer Briva</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -86,6 +87,7 @@
                       <td>{{ $item->nama_terpidana }}</td>
                       <td>{{ $item->alamat_antar }}</td>
                       <td>{{ $item->nomer_hp }}</td>
+                      <td>{{ $item->nomor_briva }}</td>
                     </tr>                   
                   @endforeach                  
                 </tbody>          
@@ -160,7 +162,7 @@
         });
 
         if(banyak > 0 ){
-          $("#info_pengambilan").text("Anda akan melakukan permintaan pengambilan barang bukti tilang sebanyak " + banyak + " buah dan bukti tilang yang tidak di pilih di anggap gagal di lakukan shettlement.  Silahkan download berita acara di bawah ini sebagai syarat pengambilan barang bukti tilang di kejaksaan.");
+          $("#info_pengambilan").text("Anda akan melakukan permintaan pengambilan barang bukti tilang sebanyak " + banyak + " buah. Silahkan download berita acara di bawah ini sebagai syarat pengambilan barang bukti tilang di kejaksaan.");
         } else {
           $("#info_pengambilan").text("Silahkan pilih data tilang terlebih dahulu");
         }
